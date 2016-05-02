@@ -2,16 +2,54 @@ Work Ticket (Clean)|Ds|
 Work Ticket (Dishes)|LRULRULRU|
 Work Ticket (Rodents)|RDcs|
 Work Ticket (Trash)|URURs|
-Classic Italian Lasagna|pscrpscrpscrEW8000|
-Meaty Rome Lasagna|psmcrpsmcrpscrEW8000|
-Vegetable Lasagna|psvcrpsvcrpscrEW8000|
-Stuffed Piza Lasagna|psmcrpsvcrpscrEW8000|
-Rainbow Gruza|LDRsEW8000|
-Rainbow Gruza w/Lemon|LDRslEW8000|
+Small Cola|DiE|
+Small Grape|RRDiE|
+Small Diet|LDiE|
+Small Cola (no ice)|DE|
+Small Water|LLDiE|
+Small Tea|RDiE|
+Medium Cola|UDiE|
+Medium Grape|URRDiE|
+Medium Diet|ULDiE|
+Medium Cola (no ice)|UDE|
+Medium Water|ULLDiE|
+Medium Tea|URDiE|
+Large Cola|UUDiE|
+Large Grape|UURRDiE|
+Large Diet|UULDiE|
+Large Cola (no ice)|UUDE|
+Large Water|UULLDiE|
+Large Tea|UURDiE|
+Jumbo Cola|UUUDiE|
+Jumbo Grape|UUURRDiE|
+Jumbo Diet|UUULDiE|
+Jumbo Cola (no ice)|UUUDE|
+Jumbo Water|UUULLDiE|
+Jumbo Tea|UUURDiE|
+Jumbo Cola w/Flavor Blast|UUUDifE|
+Jumbo Grape w/Flavor Blast|UUURRDifE|
+Jumbo Diet w/Flavor Blast|UUULDifE|
+Jumbo Cola (no ice) w/Flavor Blast|UUUDfE|
+Jumbo Water w/Flavor Blast|UUULLDifE|
+Jumbo Tea w/Flavor Blast|UUURDifE|
+Small Cola w/Flavor Blast|DifE|
+Small Grape w/Flavor Blast|RRDifE|
+Small Diet w/Flavor Blast|LDifE|
+Small Cola (no ice) w/Flavor Blast|DfE|
+Small Water w/Flavor Blast|LLDifE|
+Small Tea w/Flavor Blast|RDifE|
+Medium Cola w/Flavor Blast|UDifE|
+Medium Grape w/Flavor Blast|URRDifE|
+Medium Diet w/Flavor Blast|ULDifE|
+Large Cola w/Flavor Blast|UUDifE|
+Large Grape w/Flavor Blast|UURRDifE|
+Large Diet w/Flavor Blast|UULDifE|
+Delicious Lite Sopapillas|HD2500pE|
+Delicious Sopapillas|HD2500psE|
 Le Cheap Valu-Wine|UUUUUUUUUUUUUUUUUUUUUUUUUE|
 Casu Marzu|wUUUUUUUUUUUUUUUUUUUUUUUUUE|
 Serpent Beard|wwUUUUUUUUUUUUUUUUUUUUUUUUUE|
-Elk|wwwUUUUUUUUUUUUUUUUUUUUUUUUE|
+Elk|wwwUUUUUUUUUUUUUUUUUUUUUUUUUE|
 Deckard Vineyards|wwwwUUUUUUUUUUUUUUUUUUUUUUUUUE|
 House Salad|rcbE|
 Cheesy Leaves|rcE|
@@ -37,20 +75,67 @@ Vinaigrette House|vcbE|
 The Oily Greens|vmgE|
 Cheesy Vinaigrette|vcE|
 Vinaigrette Classic|vcobmE|
-Classic Kabob|tmtkgrgrEW7000|
-Meaty Kabob|tmkmkmkgEW7000|
-Pepper Kabob|tmgrgrgrEW7000|
-Red Kabob|tmrgtrtrEW7000|
-Kabobber|tmtmkgkrEW7000|
-Chicken Kabob|ktktkgkrEW7000|
-Small Cola|DiE|
-Small Grape|RRDiE|
-Small Diet|LDiE|
-Small Cola(no ice)|DE|
-Small Water|LLDiE|
-Small Tea|RDiE|
-Medium Cola|UDiE|
-Medium Grape|RRUDiE|
-Medium Diet|LUiE|
-Medium Cola(no ice)|UDE|
-Medium Water|LLUDiE|
+Plain Vanilla|vvvE|
+Plain Chocolate|cccE|
+Vanilla and Chocolate|vcE|
+The Yin and Yang|vchpE|
+Cherry Vanilla|vvhE|
+Chocolate Sprinkles|ccpE|
+Trio of Delicious|vcmE|
+Minty Deluxe|mmhwnE|
+Mint Cherry|mmhE|
+Nutty Mint|mmnE|
+Nutty Vanilla|vvnE|
+Nutty Chocolate|ccnE|
+Vanilla Dream|vvvhopswnE|
+Chocolate Heaven|cmmhopswnE|
+Deluxe Butter Pecan|bbhopswnE|
+Buttery Nuts|bbhwnE|
+Birthday Surprise!|vcbhopwE|
+The Fiesta Bowl|cmbhpswE|
+Classic Italian Lasagna|pscrpscrpscrEW8100|
+Meaty Rome Lasagna|psmcrpsmcrpscrEW8100|
+Vegetable Lasagna|psvcrpsvcrpscrEW8100|
+Stuffed Piza Lasagna|psmcrpsvcrpscrEW8100|
+Golden Fried Chicken|HD3200pE|
+Rainbow Gruza|LDRsEW8000|
+Rainbow Gruza w/Lemon|LDRslEW8000|
+The Salty Knot|sE|
+The Buttery Curves|bE|
+Cinnamon Pretzel|cE|
+The Dry Twister|E|
+The Classic Pretzel|sbE|
+The Sweet Twist|bcE|
+Classic Nachos|gEW8100|qgE|
+Surpreme Nachos|gEW8100|qcjtgE|
+Royal Nachos|gEW8100|qcuvjtogE|
+Veggie Nachos|qvjtoE|
+Sour Veggie Nachos|qcvjtoE|
+Guac a Nachos|quE|
+Fiesty Nachos|qcujoE|
+Guac and Chips|ujtE|
+Jalanacho|qjE|
+Bowl of Chips|E|
+Italian Style Nachos|gEW8100|qvogE|
+Scoops of Plenty|qsuoE|
+The Chubigans Special|gEW8100|qbrgE|
+Mexican Siesta|gEW8100|qubrgE|
+Mexican Fiesta|qcvjtobrE|
+Rice and Beans|qbrE|
+Beef and Beans|gEW8100|qbgE|
+Spicy Rice Special|qcjtorE|
+Shrimps Nachos|sEW8100|qcujtsE|
+Deluxe Shrimp Nachos|gsEW8100|qcuvjtobgsE|
+New Orlean Nachos|sEW8100|quvtbrsE|
+Classic Shrimp Nachos|sEW8100|qcusE|
+Beef Fajita Nachos|fEW8100|qcutobfE|
+Chicken Fajita Nachos|kEW8100|qcutobkE|
+Combo Fajita Nachos|kfEW8100|qsutobkfE|
+EXTREME FAJITAS!!!!!|skfEW8100|qcjtobkfsE|
+Chubigans Deluxe Special|kfEW8100|qbrkfE|
+Classic American|gkfEW8100|qcuvjtkfgE|
+Fiery Fiesta Nachos|skEW8100|qvjorksE|
+All Meat Special|gskfEW8100|qcubkfsgE|
+Beefy Surpreme|fgEW8100|qubfgE|
+Fully Loaded Nachos|gskfEW8100|qcuvjtobrgksfE|
+The Rich Brewsky|HD1400E|

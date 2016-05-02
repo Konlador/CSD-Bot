@@ -23,8 +23,6 @@ namespace CSD_Bot
         private readonly Queue _queue = new Queue();
         private readonly Dish[] _slots = new Dish[10];
 
-
-
         public Form1()
         {
             InitializeComponent();
@@ -90,6 +88,7 @@ namespace CSD_Bot
                 if (!_preparing && _queue.Count > 0)
                 {
                     var nextSlot = (int)_queue.Dequeue();
+                    _preparing = true;
                     Prepare(nextSlot);
                 }
                 await Task.Delay(100);
@@ -119,9 +118,9 @@ namespace CSD_Bot
 
             if (input >= 12 && input <= 40)
             {
-                bool ok = false;
-                int slot = 0;
-                switch (input)
+                var ok = false;
+                var slot = 0;
+                switch(input)
                 {
                     case 35:
                         ok = true;
@@ -160,12 +159,12 @@ namespace CSD_Bot
                         slot = 9;
                         break;
                 }
-                if (ok)
+                if (ok && _slots[slot-1].Occupied == false)
                 {
+                    _slots[slot - 1].Occupied = true;
                     _queue.Enqueue(slot);
                 }
             }
-            //CurrentRecipeBox.Text = _slots[0].Name;
             StatusBox.Text = input.ToString();
         }
 
@@ -173,11 +172,10 @@ namespace CSD_Bot
         private async void Prepare(int slot)
         {
             var sim = new InputSimulator();
-            _preparing = true;
             var end = true;
             var instructions = "";
             SendKeys.Send(slot.ToString());
-            await Task.Delay(20);
+            await Task.Delay(50);
             if (_slots[slot - 1].Name == null)
             {
                 Order(slot, ReadTextFromImage(_imagePath));
@@ -190,12 +188,14 @@ namespace CSD_Bot
                     _slots[slot - 1].Name = null;
                     _slots[slot - 1].Stage = 0;
                     _slots[slot - 1].MaxStage = 0;
+                    _slots[slot - 1].Occupied = false;
                     Console.WriteLine(@"Slot " + slot + @": Done");
                 }
                 else
                 {
                     instructions = _slots[slot - 1].Preparation[_slots[slot - 1].Stage - 1];
-                    Console.WriteLine(@"Slot " + slot + @": Preparing " + _slots[slot - 1].Name + @"|Stage " + _slots[slot - 1].Stage + @"/" + _slots[slot - 1].MaxStage + @"|");
+                    Console.WriteLine(@"Slot " + slot + @": Preparing " + _slots[slot - 1].Name + @"|Stage " +
+                                      _slots[slot - 1].Stage + @"/" + _slots[slot - 1].MaxStage + @"|");
                 }
 
                 for (var i = 0; i < instructions.Length; i++)
@@ -226,10 +226,15 @@ namespace CSD_Bot
                                 SendKeys.Send("{DOWN}");
                                 break;
                             case 'H':
-                                i++; var press = instructions[i]; i++;
+                                i++;
+                                var press = instructions[i];
+                                i++;
                                 var hTimeS = "";
-                                while ((int)instructions[i] >= 48 && (int)instructions[i] <= 57)
-                                { hTimeS += instructions[i]; i++; }
+                                while ((int) instructions[i] >= 48 && (int) instructions[i] <= 57)
+                                {
+                                    hTimeS += instructions[i];
+                                    i++;
+                                }
                                 i--;
                                 var hTime = int.Parse(hTimeS);
                                 //HoldKey(press, hTime);
@@ -272,10 +277,14 @@ namespace CSD_Bot
                     _slots[slot - 1].Name = null;
                     _slots[slot - 1].Stage = 0;
                     _slots[slot - 1].MaxStage = 0;
+                    _slots[slot - 1].Occupied = false;
                     Console.WriteLine(@"Slot " + slot + @": Done");
                 }
             }
-
+            else
+            {
+                _slots[slot - 1].Occupied = false;
+            }
             _preparing = false;
         }
 
@@ -287,6 +296,7 @@ namespace CSD_Bot
                 return false;
             }
             name = Clean(name);
+            Console.WriteLine(name);
             var found = false;
             for (var i = 0; i < _meniuSize; i++)
             {
@@ -307,16 +317,16 @@ namespace CSD_Bot
         // Returns a string only in quotes
         private static string Clean(string str)
         {
-            var ticket = str.IndexOf((char)41);
             var firstMark = str.IndexOf((char)8220);
             var secondMark = str.IndexOf((char)8221);
             if (firstMark != -1 && secondMark != -1)
             {
                 str = str.Substring(firstMark + 1, secondMark - firstMark - 1);
             }
-            else if (ticket != -1)
+            var ticket = str.IndexOf((char)41);
+            if (ticket != -1)
             {
-                str = str.Substring(0, ticket);
+                str = str.Substring(0, ticket+1);
             }
             return str;
         }
@@ -379,6 +389,7 @@ namespace CSD_Bot
             public string Name;
             public int Stage, MaxStage;
             public string[] Preparation;
+            public bool Occupied;
         }
     }
 }

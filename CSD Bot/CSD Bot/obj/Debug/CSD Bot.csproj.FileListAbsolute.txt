@@ -11,3 +11,7 @@ E:\Git\CSD Bot\CSD Bot\obj\Debug\CSD_Bot.Properties.Resources.resources
 E:\Git\CSD Bot\CSD Bot\obj\Debug\CSD Bot.csproj.GenerateResource.Cache
 E:\Git\CSD Bot\CSD Bot\obj\Debug\CSD Bot.exe
 E:\Git\CSD Bot\CSD Bot\obj\Debug\CSD Bot.pdb
+E:\Git\CSD Bot\CSD Bot\bin\Debug\CSD Bot.exe.manifest
+E:\Git\CSD Bot\CSD Bot\bin\Debug\CSD Bot.application
+E:\Git\CSD Bot\CSD Bot\obj\Debug\CSD Bot.exe.manifest
+E:\Git\CSD Bot\CSD Bot\obj\Debug\CSD Bot.application
