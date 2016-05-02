@@ -1,0 +1,13 @@
+E:\Git\CSD Bot\CSD Bot\bin\Debug\CSD Bot.exe.config
+E:\Git\CSD Bot\CSD Bot\bin\Debug\CSD Bot.exe
+E:\Git\CSD Bot\CSD Bot\bin\Debug\CSD Bot.pdb
+E:\Git\CSD Bot\CSD Bot\bin\Debug\WindowsInput.dll
+E:\Git\CSD Bot\CSD Bot\bin\Debug\WindowsInput.xml
+E:\Git\CSD Bot\CSD Bot\obj\Debug\CSD Bot.csprojResolveAssemblyReference.cache
+E:\Git\CSD Bot\CSD Bot\obj\Debug\Interop.MODI.dll
+E:\Git\CSD Bot\CSD Bot\obj\Debug\CSD Bot.csproj.ResolveComReference.cache
+E:\Git\CSD Bot\CSD Bot\obj\Debug\CSD_Bot.Form1.resources
+E:\Git\CSD Bot\CSD Bot\obj\Debug\CSD_Bot.Properties.Resources.resources
+E:\Git\CSD Bot\CSD Bot\obj\Debug\CSD Bot.csproj.GenerateResource.Cache
+E:\Git\CSD Bot\CSD Bot\obj\Debug\CSD Bot.exe
+E:\Git\CSD Bot\CSD Bot\obj\Debug\CSD Bot.pdb

@@ -1,0 +1,56 @@
+Work Ticket (Clean)|Ds|
+Work Ticket (Dishes)|LRULRULRU|
+Work Ticket (Rodents)|RDcs|
+Work Ticket (Trash)|URURs|
+Classic Italian Lasagna|pscrpscrpscrEW8000|
+Meaty Rome Lasagna|psmcrpsmcrpscrEW8000|
+Vegetable Lasagna|psvcrpsvcrpscrEW8000|
+Stuffed Piza Lasagna|psmcrpsvcrpscrEW8000|
+Rainbow Gruza|LDRsEW8000|
+Rainbow Gruza w/Lemon|LDRslEW8000|
+Le Cheap Valu-Wine|UUUUUUUUUUUUUUUUUUUUUUUUUE|
+Casu Marzu|wUUUUUUUUUUUUUUUUUUUUUUUUUE|
+Serpent Beard|wwUUUUUUUUUUUUUUUUUUUUUUUUUE|
+Elk|wwwUUUUUUUUUUUUUUUUUUUUUUUUE|
+Deckard Vineyards|wwwwUUUUUUUUUUUUUUUUUUUUUUUUUE|
+House Salad|rcbE|
+Cheesy Leaves|rcE|
+Pepper Ranch|rcoE|
+The Dry Greens|gE|
+The Dry Deluxe|mgE|
+Kids Delight|rcE|
+The Manhattan|rcbomgE|
+The Mix|rcboE|
+Tomato Ranch|rcmE|
+The Big Salad|cgE|
+Cheesy Peppers|coE|
+Salad Verde|rgE|
+The Thousand Salad|tcgE|
+The Thousand Peppers|tcoE|
+Thousand House|tcbE|
+Thousand Tomatoes|tcmE|
+Three Thousand|tcbogE|
+A Thousand Flavors|tcbomgE|
+The Oily Pepper|vcoE|
+The Oil Bleu|vcbomgE|
+Vinaigrette House|vcbE|
+The Oily Greens|vmgE|
+Cheesy Vinaigrette|vcE|
+Vinaigrette Classic|vcobmE|
+Classic Kabob|tmtkgrgrEW7000|
+Meaty Kabob|tmkmkmkgEW7000|
+Pepper Kabob|tmgrgrgrEW7000|
+Red Kabob|tmrgtrtrEW7000|
+Kabobber|tmtmkgkrEW7000|
+Chicken Kabob|ktktkgkrEW7000|
+Small Cola|DiE|
+Small Grape|RRDiE|
+Small Diet|LDiE|
+Small Cola(no ice)|DE|
+Small Water|LLDiE|
+Small Tea|RDiE|
+Medium Cola|UDiE|
+Medium Grape|RRUDiE|
+Medium Diet|LUiE|
+Medium Cola(no ice)|UDE|
+Medium Water|LLUDiE|
