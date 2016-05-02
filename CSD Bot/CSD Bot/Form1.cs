@@ -40,7 +40,10 @@ namespace CSD_Bot
             // Add the keys you want to hook to the HookedKeys list
             foreach (Keys key in Enum.GetValues(typeof(Keys)))
             {
-                _gHook.HookedKeys.Add(key);
+                if (key.GetHashCode() >= 112 && key.GetHashCode() <= 120)
+                {
+                    _gHook.HookedKeys.Add(key);
+                }
             }
             _gHook.hook(); // Start the keylogger
 
@@ -96,75 +99,15 @@ namespace CSD_Bot
         }
 
         // Handle the KeyDown Event
-        private async void gHook_KeyDown(object sender, KeyEventArgs e)
+        private void gHook_KeyDown(object sender, KeyEventArgs e)
         {
             var input = e.KeyValue;
             HistoryLog.Text += (char)input;
 
-            await Task.Delay(10);
-            /*
-            if (input == 96)
-            {
-                var bmpScreenshot = Screenshot();
-                PictureBox.Image = bmpScreenshot;
-                GC.Collect();
+            var slot = input - 111;
+            _slots[slot - 1].Occupied = true;
+            _queue.Enqueue(slot);
 
-                // Look at screen and read dish title
-                bmpScreenshot.Save(_imagePath);
-
-                if (Order(1, ReadTextFromImage(_imagePath))) _queue.Enqueue(1);
-            }
-            */
-
-            if (input >= 12 && input <= 40)
-            {
-                var ok = false;
-                var slot = 0;
-                switch(input)
-                {
-                    case 35:
-                        ok = true;
-                        slot = 1;
-                        break;
-                    case 40:
-                        ok = true;
-                        slot = 2;
-                        break;
-                    case 34:
-                        ok = true;
-                        slot = 3;
-                        break;
-                    case 37:
-                        ok = true;
-                        slot = 4;
-                        break;
-                    case 12:
-                        ok = true;
-                        slot = 5;
-                        break;
-                    case 39:
-                        ok = true;
-                        slot = 6;
-                        break;
-                    case 36:
-                        ok = true;
-                        slot = 7;
-                        break;
-                    case 38:
-                        ok = true;
-                        slot = 8;
-                        break;
-                    case 33:
-                        ok = true;
-                        slot = 9;
-                        break;
-                }
-                if (ok && _slots[slot-1].Occupied == false)
-                {
-                    _slots[slot - 1].Occupied = true;
-                    _queue.Enqueue(slot);
-                }
-            }
             StatusBox.Text = input.ToString();
         }
 
