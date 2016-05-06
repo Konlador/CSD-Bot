@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WindowsInput;
@@ -13,6 +15,9 @@ namespace CSD_Bot
 {
     public partial class Form1 : Form
     {
+        [DllImport("gdi32.dll", CharSet = CharSet.Auto, SetLastError = true, ExactSpelling = true)]
+        public static extern int BitBlt(IntPtr hDC, int x, int y, int nWidth, int nHeight, IntPtr hSrcDC, int xSrc, int ySrc, int dwRop);
+
         public bool BotOn;
         private GlobalKeyboardHook _gHook;
 
@@ -22,6 +27,8 @@ namespace CSD_Bot
         private bool _preparing;
         private readonly Queue _queue = new Queue();
         private readonly Dish[] _slots = new Dish[10];
+        private readonly Point[] _slotLocation = new Point[10];
+        private readonly Bitmap _screenPixel = new Bitmap(1, 1, PixelFormat.Format32bppArgb);
 
         public Form1()
         {
@@ -31,16 +38,34 @@ namespace CSD_Bot
         // Default settings
         private void Form1_Load(object sender, EventArgs e)
         {
+            _slotLocation[0].X = 30;
+            _slotLocation[0].Y = 190;
+            _slotLocation[1].X = 40;
+            _slotLocation[1].Y = 240;
+            _slotLocation[2].X = 40;
+            _slotLocation[2].Y = 340;
+            _slotLocation[3].X = 40;
+            _slotLocation[3].Y = 415;
+            _slotLocation[4].X = 40;
+            _slotLocation[4].Y = 495;
+            _slotLocation[5].X = 40;
+            _slotLocation[5].Y = 575;
+            _slotLocation[6].X = 32;
+            _slotLocation[6].Y = 650;
+            _slotLocation[7].X = 33;
+            _slotLocation[7].Y = 722;
+
             BotOn = true;
             _preparing = false;
-            Run();
+            
 
             _gHook = new GlobalKeyboardHook(); // Create a new GlobalKeyboardHook
             _gHook.KeyDown += gHook_KeyDown; // Declare a KeyDown Event
+
             // Add the keys you want to hook to the HookedKeys list
             foreach (Keys key in Enum.GetValues(typeof(Keys)))
             {
-                if (key.GetHashCode() >= 112 && key.GetHashCode() <= 120)
+                if (key.GetHashCode() >= 112 && key.GetHashCode() <= 119)
                 {
                     _gHook.HookedKeys.Add(key);
                 }
@@ -73,6 +98,7 @@ namespace CSD_Bot
                 }
                 _meniu[i].MaxStage = d;
             }
+            Run();// Start the checking
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -85,16 +111,26 @@ namespace CSD_Bot
         {
             while (BotOn)
             {
-                /*if (slot1cords.pixel == white && Slots[1-1].Name == null) { Queue.add(1)}
-                if (slot1cords.pixel == white && Slots[1 - 1].Name == null) { Queue.add(2)}
-                if (slot1cords.pixel == white && Slots[1 - 1].Name == null) { Queue.add(3)} ...*/
-                if (!_preparing && _queue.Count > 0)
+                if (!_preparing)
                 {
-                    var nextSlot = (int)_queue.Dequeue();
-                    _preparing = true;
-                    Prepare(nextSlot);
+                    /*
+                    for (var slot = 1; slot <= 8; slot++)
+                    {
+                        if (CheckSlot(_slotLocation[slot - 1]) && !_slots[slot - 1].Occupied)
+                        {
+                            //Console.WriteLine(slot + @" is white");
+                            _slots[slot - 1].Occupied = true;
+                            _queue.Enqueue(slot);
+                        }
+                    }*/
+
+                    if (_queue.Count > 0)
+                    {
+                        _preparing = true;
+                        Prepare((int)_queue.Dequeue());
+                    }
                 }
-                await Task.Delay(100);
+                await Task.Delay(50);
             }
         }
 
@@ -105,9 +141,7 @@ namespace CSD_Bot
             HistoryLog.Text += (char)input;
 
             var slot = input - 111;
-            _slots[slot - 1].Occupied = true;
             _queue.Enqueue(slot);
-
             StatusBox.Text = input.ToString();
         }
 
@@ -137,13 +171,12 @@ namespace CSD_Bot
                 else
                 {
                     instructions = _slots[slot - 1].Preparation[_slots[slot - 1].Stage - 1];
-                    Console.WriteLine(@"Slot " + slot + @": Preparing " + _slots[slot - 1].Name + @"|Stage " +
-                                      _slots[slot - 1].Stage + @"/" + _slots[slot - 1].MaxStage + @"|");
+                    Console.WriteLine(@"Slot " + slot + @": Preparing " + _slots[slot - 1].Name + @"|Stage " + _slots[slot - 1].Stage + @"/" + _slots[slot - 1].MaxStage + @"|");
                 }
 
                 for (var i = 0; i < instructions.Length; i++)
                 {
-                    await Task.Delay(50);
+                    await Task.Delay(40);
                     if (char.IsLower(instructions[i]))
                     {
                         SendKeys.Send(instructions[i].ToString());
@@ -154,7 +187,6 @@ namespace CSD_Bot
                         {
                             case 'E':
                                 SendKeys.Send("{ENTER}");
-                                _preparing = false;
                                 break;
                             case 'U':
                                 SendKeys.Send("{UP}");
@@ -173,7 +205,7 @@ namespace CSD_Bot
                                 var press = instructions[i];
                                 i++;
                                 var hTimeS = "";
-                                while ((int) instructions[i] >= 48 && (int) instructions[i] <= 57)
+                                while (instructions[i] >= 48 && instructions[i] <= 57)
                                 {
                                     hTimeS += instructions[i];
                                     i++;
@@ -206,6 +238,7 @@ namespace CSD_Bot
                                 }
                                 break;
                             case 'W':
+                                _preparing = false;
                                 end = false;
                                 var time = int.Parse(instructions.Substring(i + 1, instructions.Length - i - 1));
                                 await Task.Delay(time);
@@ -222,13 +255,14 @@ namespace CSD_Bot
                     _slots[slot - 1].MaxStage = 0;
                     _slots[slot - 1].Occupied = false;
                     Console.WriteLine(@"Slot " + slot + @": Done");
+                    _preparing = false;
                 }
             }
             else
             {
                 _slots[slot - 1].Occupied = false;
+                _preparing = false;
             }
-            _preparing = false;
         }
 
         // Fills the slot info
@@ -260,11 +294,11 @@ namespace CSD_Bot
         // Returns a string only in quotes
         private static string Clean(string str)
         {
-            var firstMark = str.IndexOf((char)8220);
+            //var firstMark = str.IndexOf((char)8220);
             var secondMark = str.IndexOf((char)8221);
-            if (firstMark != -1 && secondMark != -1)
+            if (secondMark != -1)
             {
-                str = str.Substring(firstMark + 1, secondMark - firstMark - 1);
+                str = str.Substring(1, secondMark - 1);
             }
             var ticket = str.IndexOf((char)41);
             if (ticket != -1)
@@ -274,26 +308,55 @@ namespace CSD_Bot
             return str;
         }
 
+        // Check if the slot icon is requesting preparation
+        public bool CheckSlot(Point location)
+        {
+            // Getting the color
+            using (Graphics gdest = Graphics.FromImage(_screenPixel))
+            {
+                using (Graphics gsrc = Graphics.FromHwnd(IntPtr.Zero))
+                {
+                    IntPtr hSrcDC = gsrc.GetHdc();
+                    IntPtr hDC = gdest.GetHdc();
+                    int retval = BitBlt(hDC, 0, 0, 1, 1, hSrcDC, location.X, location.Y, (int)CopyPixelOperation.SourceCopy);
+                    gdest.ReleaseHdc();
+                    gsrc.ReleaseHdc();
+                }
+            }
+
+            var c = _screenPixel.GetPixel(0, 0);
+            return c.R == 255 && c.G == 255 && c.B == 255;
+        }
+
         // Take a screenshot from primary screen
         private static Bitmap Screenshot()
         {
             // s = Screen.PrimaryScreen.Bounds.Size
-            // Pic - 515, 40
-            //Size S = new Size(515, 40);
-            // Screen - 550, 55
             var s = new Size(800, 55);
+            // Screen - 550, 55
 
             // This is there we will store a snapshot of the screen
             var bmpScreenshot = new Bitmap(s.Width, s.Height);
             var g = Graphics.FromImage(bmpScreenshot);
-            // Copy from screen into he bitmap we created
 
-            // Pic - 485, 695
-            //g.CopyFromScreen(485, 695, 0, 0, S);
-            // Screem - 365, 780
+            // Take a screenshot
             g.CopyFromScreen(365, 780, 0, 0, s);
+            // Screem - 365, 780
 
-            return bmpScreenshot;
+            //float scale = Math.Min(width / image.Width, height / image.Height);
+            const float scale = 0.95f;
+
+            var bmpScaled = new Bitmap(bmpScreenshot.Width*2, bmpScreenshot.Height*2);
+            var graph = Graphics.FromImage(bmpScaled);
+
+            var scaleWidth = (int)(bmpScreenshot.Width * scale);
+            var scaleHeight = (int)(bmpScreenshot.Height * scale);
+
+            var brush = new SolidBrush(Color.Black);
+            graph.FillRectangle(brush, new RectangleF(0, 0, scaleWidth, scaleHeight));
+            graph.DrawImage(bmpScreenshot, new Rectangle(0, 0, scaleWidth, scaleHeight));
+
+            return bmpScaled;
         }
 
         // Read Text from Image

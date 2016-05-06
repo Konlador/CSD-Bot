@@ -1,7 +1,85 @@
-Work Ticket (Clean)|Ds|
-Work Ticket (Dishes)|LRULRULRU|
-Work Ticket (Rodents)|RDcs|
-Work Ticket (Trash)|URURs|
+House Salad|rcbE|
+Cheesy Leaves|rcE|
+Pepper Ranch|rcoE|
+The Dry Greens|gE|
+The Dry Deluxe|mgE|
+Kids Delight|rcE|
+The Manhattan|rcbomgE|
+The Mix|rcboE|
+Tomato Ranch|rcmE|
+The Big Salad|cgE|
+Cheesy Peppers|coE|
+Salad Verde|rgE|
+The Thousand Salad|tcgE|
+The Thousand Peppers|tcoE|
+Thousand House|tcbE|
+Thousand Tomatoes|tcmE|
+Three Thousand|tcbogE|
+A Thousand Flavors|tcbomgE|
+The Oily Pepper|vcoE|
+The Oil Bleu|vcbomgE|
+Vinaigrette House|vcbE|
+The Oily Greens|vmgE|
+Cheesy Vinaigrette|vcE|
+Vinaigrette Classic|vcobmE|
+Cheese Pasta|rEW11000|cE|
+Classic Spaghetti|rEW11000|rmE|
+Red Veggie Pasta|rEW11000|rpusoE|
+The Meaty Pasta|rEW11000|rmkbE|
+Hot Bacon Pasta|rEW11000|rbpE|
+Cheesy Onion Pasta|rEW11000|coE|
+Cheesy Meaty Pasta|rEW11000|cmkbE|
+Cheesy Deluxe Pasta|rEW11000|cmkbpusoE|
+Red Deluxe Pasta|rEW11000|rmkbpusoE|
+Cheesy Chicken Pasta|rEW11000|ckbE|
+Spaghetti Deluxe|rEW11000|rmbusE|
+Cheesy Veggie Pasta|rEW11000|cpusoE|
+Creamy Aifredo|rEW11000|wksE|
+The Carbonara|rEW11000|wkbpuiE|
+Creamy Meat Pasta|rEW11000|wmkbuE|
+Creamy Veggie Pasta|rEW11000|wpusoE|
+Spicy Bacon Pasta|rEW11000|rbiE|
+Spicy Spaghetti|rEW11000|rmiE|
+The Dry Tomato|rEW11000|mtE|
+Red Pasta Rally|rEW11000|rpitE|
+Dry Veggie Pasta|rEW11000|psitE|
+Cheesy Tomato|rEW11000|citE|
+Spaghetti Pesto|rEW11000|gmE|
+Manhattan Pesto|rEW11000|gmkbpusoitE|
+Chicken Pesto|rEW11000|gkuiE|
+Verde Pesto|rEW11000|gsiE|
+Classic Nachos|gEW8100|qgE|
+Surpreme Nachos|gEW8100|qcjtgE|
+Royal Nachos|gEW8100|qcuvjtogE|
+Veggie Nachos|qvjtoE|
+Sour Veggie Nachos|qcvjtoE|
+Guac a Nachos|quE|
+Fiesty Nachos|qcujoE|
+Guac and Chips|ujtE|
+Jalanacho|qjE|
+Bowl of Chips|E|
+Italian Style Nachos|gEW8100|qvogE|
+Scoops of Plenty|qsuoE|
+The Chubigans Special|gEW8100|qbrgE|
+Mexican Siesta|gEW8100|qubrgE|
+Mexican Fiesta|qcvjtobrE|
+Rice and Beans|qbrE|
+Beef and Beans|gEW8100|qbgE|
+Spicy Rice Special|qcjtorE|
+Shrimps Nachos|sEW8100|qcujtsE|
+Deluxe Shrimp Nachos|gsEW8100|qcuvjtobgsE|
+New Orlean Nachos|sEW8100|quvtbrsE|
+Classic Shrimp Nachos|sEW8100|qcusE|
+Beef Fajita Nachos|fEW8100|qcutobfE|
+Chicken Fajita Nachos|kEW8100|qcutobkE|
+Combo Fajita Nachos|kfEW8100|qsutobkfE|
+EXTREME FAJITAS!!!!!|skfEW8100|qcjtobkfsE|
+Chubigans Deluxe Special|kfEW8100|qbrkfE|
+Classic American|gkfEW8100|qcuvjtkfgE|
+Fiery Fiesta Nachos|skEW8100|qvjorksE|
+All Meat Special|gskfEW8100|qcubkfsgE|
+Beefy Surpreme|fgEW8100|qubfgE|
+Fully Loaded Nachos|gskfEW8100|qcuvjtobrgksfE|
 Small Cola|DiE|
 Small Grape|RRDiE|
 Small Diet|LDiE|
@@ -44,98 +122,3 @@ Medium Diet w/Flavor Blast|ULDifE|
 Large Cola w/Flavor Blast|UUDifE|
 Large Grape w/Flavor Blast|UURRDifE|
 Large Diet w/Flavor Blast|UULDifE|
-Delicious Lite Sopapillas|HD2500pE|
-Delicious Sopapillas|HD2500psE|
-Le Cheap Valu-Wine|UUUUUUUUUUUUUUUUUUUUUUUUUE|
-Casu Marzu|wUUUUUUUUUUUUUUUUUUUUUUUUUE|
-Serpent Beard|wwUUUUUUUUUUUUUUUUUUUUUUUUUE|
-Elk|wwwUUUUUUUUUUUUUUUUUUUUUUUUUE|
-Deckard Vineyards|wwwwUUUUUUUUUUUUUUUUUUUUUUUUUE|
-House Salad|rcbE|
-Cheesy Leaves|rcE|
-Pepper Ranch|rcoE|
-The Dry Greens|gE|
-The Dry Deluxe|mgE|
-Kids Delight|rcE|
-The Manhattan|rcbomgE|
-The Mix|rcboE|
-Tomato Ranch|rcmE|
-The Big Salad|cgE|
-Cheesy Peppers|coE|
-Salad Verde|rgE|
-The Thousand Salad|tcgE|
-The Thousand Peppers|tcoE|
-Thousand House|tcbE|
-Thousand Tomatoes|tcmE|
-Three Thousand|tcbogE|
-A Thousand Flavors|tcbomgE|
-The Oily Pepper|vcoE|
-The Oil Bleu|vcbomgE|
-Vinaigrette House|vcbE|
-The Oily Greens|vmgE|
-Cheesy Vinaigrette|vcE|
-Vinaigrette Classic|vcobmE|
-Plain Vanilla|vvvE|
-Plain Chocolate|cccE|
-Vanilla and Chocolate|vcE|
-The Yin and Yang|vchpE|
-Cherry Vanilla|vvhE|
-Chocolate Sprinkles|ccpE|
-Trio of Delicious|vcmE|
-Minty Deluxe|mmhwnE|
-Mint Cherry|mmhE|
-Nutty Mint|mmnE|
-Nutty Vanilla|vvnE|
-Nutty Chocolate|ccnE|
-Vanilla Dream|vvvhopswnE|
-Chocolate Heaven|cmmhopswnE|
-Deluxe Butter Pecan|bbhopswnE|
-Buttery Nuts|bbhwnE|
-Birthday Surprise!|vcbhopwE|
-The Fiesta Bowl|cmbhpswE|
-Classic Italian Lasagna|pscrpscrpscrEW8100|
-Meaty Rome Lasagna|psmcrpsmcrpscrEW8100|
-Vegetable Lasagna|psvcrpsvcrpscrEW8100|
-Stuffed Piza Lasagna|psmcrpsvcrpscrEW8100|
-Golden Fried Chicken|HD3200pE|
-Rainbow Gruza|LDRsEW8000|
-Rainbow Gruza w/Lemon|LDRslEW8000|
-The Salty Knot|sE|
-The Buttery Curves|bE|
-Cinnamon Pretzel|cE|
-The Dry Twister|E|
-The Classic Pretzel|sbE|
-The Sweet Twist|bcE|
-Classic Nachos|gEW8100|qgE|
-Surpreme Nachos|gEW8100|qcjtgE|
-Royal Nachos|gEW8100|qcuvjtogE|
-Veggie Nachos|qvjtoE|
-Sour Veggie Nachos|qcvjtoE|
-Guac a Nachos|quE|
-Fiesty Nachos|qcujoE|
-Guac and Chips|ujtE|
-Jalanacho|qjE|
-Bowl of Chips|E|
-Italian Style Nachos|gEW8100|qvogE|
-Scoops of Plenty|qsuoE|
-The Chubigans Special|gEW8100|qbrgE|
-Mexican Siesta|gEW8100|qubrgE|
-Mexican Fiesta|qcvjtobrE|
-Rice and Beans|qbrE|
-Beef and Beans|gEW8100|qbgE|
-Spicy Rice Special|qcjtorE|
-Shrimps Nachos|sEW8100|qcujtsE|
-Deluxe Shrimp Nachos|gsEW8100|qcuvjtobgsE|
-New Orlean Nachos|sEW8100|quvtbrsE|
-Classic Shrimp Nachos|sEW8100|qcusE|
-Beef Fajita Nachos|fEW8100|qcutobfE|
-Chicken Fajita Nachos|kEW8100|qcutobkE|
-Combo Fajita Nachos|kfEW8100|qsutobkfE|
-EXTREME FAJITAS!!!!!|skfEW8100|qcjtobkfsE|
-Chubigans Deluxe Special|kfEW8100|qbrkfE|
-Classic American|gkfEW8100|qcuvjtkfgE|
-Fiery Fiesta Nachos|skEW8100|qvjorksE|
-All Meat Special|gskfEW8100|qcubkfsgE|
-Beefy Surpreme|fgEW8100|qubfgE|
-Fully Loaded Nachos|gskfEW8100|qcuvjtobrgksfE|
-The Rich Brewsky|HD1400E|
