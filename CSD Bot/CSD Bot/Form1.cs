@@ -113,24 +113,20 @@ namespace CSD_Bot
             {
                 if (!_preparing)
                 {
-                    /*
                     for (var slot = 1; slot <= 8; slot++)
                     {
-                        if (CheckSlot(_slotLocation[slot - 1]) && !_slots[slot - 1].Occupied)
-                        {
-                            //Console.WriteLine(slot + @" is white");
-                            _slots[slot - 1].Occupied = true;
-                            _queue.Enqueue(slot);
-                        }
-                    }*/
-
-                    if (_queue.Count > 0)
+                        if (_slots[slot - 1].Occupied || !CheckSlot(_slotLocation[slot - 1])) continue;
+                        //Console.WriteLine(slot + @" is white");
+                        _slots[slot - 1].Occupied = true;
+                        _queue.Enqueue(slot);
+                    }
+                    if (_queue.Count != 0)
                     {
                         _preparing = true;
                         Prepare((int)_queue.Dequeue());
                     }
                 }
-                await Task.Delay(50);
+                await Task.Delay(70);
             }
         }
 
@@ -150,33 +146,22 @@ namespace CSD_Bot
         {
             var sim = new InputSimulator();
             var end = true;
-            var instructions = "";
             SendKeys.Send(slot.ToString());
-            await Task.Delay(50);
             if (_slots[slot - 1].Name == null)
             {
+                await Task.Delay(50);
                 Order(slot, ReadTextFromImage(_imagePath));
             }
             if (_slots[slot - 1].Name != null)
             {
                 _slots[slot - 1].Stage++;
-                if (_slots[slot - 1].Stage > _slots[slot - 1].MaxStage)
-                {
-                    _slots[slot - 1].Name = null;
-                    _slots[slot - 1].Stage = 0;
-                    _slots[slot - 1].MaxStage = 0;
-                    _slots[slot - 1].Occupied = false;
-                    Console.WriteLine(@"Slot " + slot + @": Done");
-                }
-                else
-                {
-                    instructions = _slots[slot - 1].Preparation[_slots[slot - 1].Stage - 1];
-                    Console.WriteLine(@"Slot " + slot + @": Preparing " + _slots[slot - 1].Name + @"|Stage " + _slots[slot - 1].Stage + @"/" + _slots[slot - 1].MaxStage + @"|");
-                }
+
+                var instructions = _slots[slot - 1].Preparation[_slots[slot - 1].Stage - 1];
+                Console.WriteLine(@"Slot " + slot + @": Preparing " + _slots[slot - 1].Name + @"|Stage " + _slots[slot - 1].Stage + @"/" + _slots[slot - 1].MaxStage + @"|");
 
                 for (var i = 0; i < instructions.Length; i++)
                 {
-                    await Task.Delay(40);
+                    await Task.Delay(50);
                     if (char.IsLower(instructions[i]))
                     {
                         SendKeys.Send(instructions[i].ToString());
@@ -201,9 +186,8 @@ namespace CSD_Bot
                                 SendKeys.Send("{DOWN}");
                                 break;
                             case 'H':
-                                i++;
-                                var press = instructions[i];
-                                i++;
+                                var press = instructions[i+1];
+                                i+=2;
                                 var hTimeS = "";
                                 while (instructions[i] >= 48 && instructions[i] <= 57)
                                 {
@@ -212,49 +196,64 @@ namespace CSD_Bot
                                 }
                                 i--;
                                 var hTime = int.Parse(hTimeS);
-                                //HoldKey(press, hTime);
+                                VirtualKeyCode virtualKey = 0;
                                 switch (press)
                                 {
                                     case 'D':
-                                        sim.Keyboard.KeyDown(VirtualKeyCode.DOWN);
-                                        await Task.Delay(hTime);
-                                        sim.Keyboard.KeyUp(VirtualKeyCode.DOWN);
-                                        break;
-                                    case 'U':
-                                        sim.Keyboard.KeyDown(VirtualKeyCode.UP);
-                                        await Task.Delay(hTime);
-                                        sim.Keyboard.KeyUp(VirtualKeyCode.UP);
+                                        virtualKey = (VirtualKeyCode) 40;
                                         break;
                                     case 'L':
-                                        sim.Keyboard.KeyDown(VirtualKeyCode.LEFT);
-                                        await Task.Delay(hTime);
-                                        sim.Keyboard.KeyUp(VirtualKeyCode.LEFT);
+                                        virtualKey = (VirtualKeyCode)37;
                                         break;
+                                    case 'U':
+                                        virtualKey = (VirtualKeyCode)38;
+                                        break;
+                                    
                                     case 'R':
-                                        sim.Keyboard.KeyDown(VirtualKeyCode.RIGHT);
-                                        await Task.Delay(hTime);
-                                        sim.Keyboard.KeyUp(VirtualKeyCode.RIGHT);
+                                        virtualKey = (VirtualKeyCode)39;
                                         break;
                                 }
+                                sim.Keyboard.KeyDown(virtualKey);
+                                await Task.Delay(hTime);
+                                sim.Keyboard.KeyUp(virtualKey);
                                 break;
                             case 'W':
                                 _preparing = false;
                                 end = false;
-                                var time = int.Parse(instructions.Substring(i + 1, instructions.Length - i - 1));
-                                await Task.Delay(time);
-                                _queue.Enqueue(slot);
+                                var wTime = int.Parse(instructions.Substring(i + 1, instructions.Length - i - 1));
+                                await Task.Delay(wTime);
+                                Console.WriteLine(_slots[slot-1].Stage + @" off " + _slots[slot-1].MaxStage);
+                                if (_slots[slot - 1].Stage == _slots[slot - 1].MaxStage)
+                                {
+                                    Console.Write(@"RESET");
+                                    SendKeys.Send(slot.ToString());
+                                    _slots[slot - 1].Name = null;
+                                    _slots[slot - 1].Stage = 0;
+                                    _slots[slot - 1].MaxStage = 0;
+                                    _slots[slot - 1].Occupied = false;
+                                    Console.WriteLine(@"Slot " + slot + @": Done");
+                                }
+                                else
+                                {
+                                    Console.WriteLine(@"_queue.Enqueue(slot)");
+                                    _queue.Enqueue(slot);
+                                }
+                                
+                                //_queue.Enqueue(slot);
                                 i = instructions.Length;
                                 break;
                         }
                     }
                 }
-                if (end)
+                if (_slots[slot - 1].Stage == _slots[slot - 1].MaxStage && end)
                 {
+                    Console.WriteLine(@"Slot " + slot + @": Done");
+                    Console.WriteLine(@"RESET");
                     _slots[slot - 1].Name = null;
                     _slots[slot - 1].Stage = 0;
                     _slots[slot - 1].MaxStage = 0;
+                    //await Task.Delay(200);
                     _slots[slot - 1].Occupied = false;
-                    Console.WriteLine(@"Slot " + slot + @": Done");
                     _preparing = false;
                 }
             }
@@ -312,13 +311,13 @@ namespace CSD_Bot
         public bool CheckSlot(Point location)
         {
             // Getting the color
-            using (Graphics gdest = Graphics.FromImage(_screenPixel))
+            using (var gdest = Graphics.FromImage(_screenPixel))
             {
-                using (Graphics gsrc = Graphics.FromHwnd(IntPtr.Zero))
+                using (var gsrc = Graphics.FromHwnd(IntPtr.Zero))
                 {
-                    IntPtr hSrcDC = gsrc.GetHdc();
-                    IntPtr hDC = gdest.GetHdc();
-                    int retval = BitBlt(hDC, 0, 0, 1, 1, hSrcDC, location.X, location.Y, (int)CopyPixelOperation.SourceCopy);
+                    IntPtr hSrcDc = gsrc.GetHdc();
+                    IntPtr hDc = gdest.GetHdc();
+                    int retval = BitBlt(hDc, 0, 0, 1, 1, hSrcDc, location.X, location.Y, (int)CopyPixelOperation.SourceCopy);
                     gdest.ReleaseHdc();
                     gsrc.ReleaseHdc();
                 }
@@ -344,7 +343,7 @@ namespace CSD_Bot
             // Screem - 365, 780
 
             //float scale = Math.Min(width / image.Width, height / image.Height);
-            const float scale = 0.95f;
+            const float scale = 0.8f;
 
             var bmpScaled = new Bitmap(bmpScreenshot.Width*2, bmpScreenshot.Height*2);
             var graph = Graphics.FromImage(bmpScaled);
@@ -385,8 +384,15 @@ namespace CSD_Bot
             }
             catch (Exception)
             {
-                //throw new Exception(ex.Message);
+                Console.WriteLine(@"Couldn't read.");
             }
+            return str;
+        }
+
+        private string ReadText(string imagePath)
+        {
+            string str;
+            OcrResult result = await ocrEngine.RecognizeAsync(height, width, pixels);
             return str;
         }
 
