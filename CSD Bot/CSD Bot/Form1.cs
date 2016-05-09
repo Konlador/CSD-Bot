@@ -26,8 +26,8 @@ namespace CSD_Bot
         private int _meniuSize;
         private bool _preparing;
         private readonly Queue _queue = new Queue();
-        private readonly Dish[] _slots = new Dish[10];
-        private readonly Point[] _slotLocation = new Point[10];
+        private readonly Dish[] _slots = new Dish[8];
+        private readonly Point[] _slotLocation = new Point[8];
         private readonly Bitmap _screenPixel = new Bitmap(1, 1, PixelFormat.Format32bppArgb);
 
         public Form1()
@@ -38,6 +38,7 @@ namespace CSD_Bot
         // Default settings
         private void Form1_Load(object sender, EventArgs e)
         {
+            // Windowed
             _slotLocation[0].X = 30;
             _slotLocation[0].Y = 190;
             _slotLocation[1].X = 40;
@@ -73,7 +74,7 @@ namespace CSD_Bot
             _gHook.hook(); // Start the keylogger
 
             // Empty the slot array
-            for (var i = 0; i < 10; i++)
+            for (var i = 0; i < 8; i++)
             {
                 _slots[i].Name = null;
                 _slots[i].Preparation = new string[10];
@@ -126,7 +127,7 @@ namespace CSD_Bot
                         Prepare((int)_queue.Dequeue());
                     }
                 }
-                await Task.Delay(70);
+                await Task.Delay(40);
             }
         }
 
@@ -134,11 +135,9 @@ namespace CSD_Bot
         private void gHook_KeyDown(object sender, KeyEventArgs e)
         {
             var input = e.KeyValue;
-            HistoryLog.Text += (char)input;
 
             var slot = input - 111;
             _queue.Enqueue(slot);
-            StatusBox.Text = input.ToString();
         }
 
         // Look at a slot and handle it
@@ -193,6 +192,10 @@ namespace CSD_Bot
                                 {
                                     hTimeS += instructions[i];
                                     i++;
+                                    if (i == instructions.Length)
+                                    {
+                                        break;
+                                    }
                                 }
                                 i--;
                                 var hTime = int.Parse(hTimeS);
@@ -340,10 +343,10 @@ namespace CSD_Bot
 
             // Take a screenshot
             g.CopyFromScreen(365, 780, 0, 0, s);
-            // Screem - 365, 780
+            // Screem - 365, 780// Screem - 365, 780
 
             //float scale = Math.Min(width / image.Width, height / image.Height);
-            const float scale = 0.8f;
+            const float scale = 0.835f;
 
             var bmpScaled = new Bitmap(bmpScreenshot.Width*2, bmpScreenshot.Height*2);
             var graph = Graphics.FromImage(bmpScaled);
@@ -386,13 +389,6 @@ namespace CSD_Bot
             {
                 Console.WriteLine(@"Couldn't read.");
             }
-            return str;
-        }
-
-        private string ReadText(string imagePath)
-        {
-            string str;
-            OcrResult result = await ocrEngine.RecognizeAsync(height, width, pixels);
             return str;
         }
 

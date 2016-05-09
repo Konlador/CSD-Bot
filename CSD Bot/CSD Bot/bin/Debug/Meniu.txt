@@ -1,5 +1,54 @@
-Veggie Pizza|tcuvnEW8000|
-Cheesy Deluxe|escEHD300W7000|
-Hearty Meat Soup|kmihpcyHD70HD70HD70gHD70EW11000|
-Fiesty Nachos|qcujoE|
-Garlic Lobster|lEW12000|aE|
+Classic Italian Lasagna|pscrpscrpscrEW8100|
+Meaty Rome Lasagna|psmcrpsmcrpscrEW8100|
+Vegetable Lasagna|psvcrpsvcrpscrEW8100|
+Stuffed Piza Lasagna|psmcrpsvcrpscrEW8100|
+Classic Steak|sssjEW17500|
+Citrus Steak|sjjcEW18000|
+Spicy Steak|sppppjjEW18000|
+The Dry Spicy Steak|sppEW18000|
+Baconesque|sjjbbEW18000|
+Spicy Baconesque|sjppbbEW18000|
+Spicy Smokey Steak|ssdpppjjEW18000|
+Smokey Orange Steak|sdjccEW18000|
+Hickory Steak|sshhjjjjEW18000|
+West Texas Steak|ssddhhppjjbbEW18000|
+The Original|mEW8000|mlbctEHD500|
+The Double|mmEW8000|mmlbctEHD500|
+BLT|bltEHD500|
+BLT and C|bltcEHD500|
+The HEARTSTOPPER!|mmEW8000|mmbbcEHD500|
+The Lite Delight|mEW8000|mlEHD500|
+The Ryan Davis|mEW8000|mbcctEHD500|
+The Tumbleweed|bcEHD500|
+The Lonely Patty|mEW8000|mEHD500|
+The Triple|mmmEW8000|mmmcEHD500|
+The Triple w/Bacon|mmmEW8000|mmmbcEHD500|
+The RED|mEW8000|mtEHD500|
+The Veggie|ltpEHD500|
+The Pickier|mEW8000|mcpEHD500|
+The Trio|mEW8000|mtpEHD500|
+The P-D|mmEW8000|mmbpEHD500|
+The Stacked|mEW8000|mlbctpEHD500|
+The Greens|mEW8000|mlpEHD500|
+The Super Sour|mEW8000|mtpoEHD500|
+The Aroma!!!|mEW8000|moEHD500|
+The Extra Veggies|ltpoEHD500|
+The POWER!|mmEW8000|mmbcoEHD500|
+The BLOT|blotEHD500|
+The C-BLOT|cblotEHD500|
+The Cheesy Bread|bcsEHD500|
+The MELT!|mEW8000|mcsEHD500|
+The Swiss|mEW8000|mltsEHD500|
+The Holy Burger|mEW8000|mlosEHD500|
+Chubigans Special|mEW8000|mlbcsEHD500|
+The Double Melt|mmEW8000|mmcsEHD500|
+The Chick-a|kEW8000|kpEHD500|
+The Chick-a Deluxe|kEW8000|kltpEHD500|
+The Chick-a Surprerne|kEW8000|klbctpEHD500|
+The Chick-a Melt|kEW8000|kbcpsEHD500|
+The Three Cs|kEW8000|kcsEHD500|
+The Double Cs|kkEW8000|kklpEHD500|
+The Meat Lovers|kmEW8000|kmbEHD500|
+The MIX|kmEW8000|kmlctEHD500|
+The American|kmEW8000|kmbcosEHD500|
+The EVERYTHING|kmEW8000|kmlpbocstEHD500|
