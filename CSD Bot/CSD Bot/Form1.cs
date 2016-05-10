@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -19,8 +21,8 @@ namespace CSD_Bot
         public static extern int BitBlt(IntPtr hDC, int x, int y, int nWidth, int nHeight, IntPtr hSrcDC, int xSrc, int ySrc, int dwRop);
 
         public bool BotOn;
-        private GlobalKeyboardHook _gHook;
 
+        private GlobalKeyboardHook _gHook;
         private readonly string _imagePath = AppDomain.CurrentDomain.BaseDirectory + "myBitmap.bmp";
         private readonly Dish[] _meniu = new Dish[1000];
         private int _meniuSize;
@@ -29,6 +31,9 @@ namespace CSD_Bot
         private readonly Dish[] _slots = new Dish[8];
         private readonly Point[] _slotLocation = new Point[8];
         private readonly Bitmap _screenPixel = new Bitmap(1, 1, PixelFormat.Format32bppArgb);
+
+        private readonly List<TextBox> _slotBox = new List<TextBox>();
+        private readonly List<TextBox> _slotStatus = new List<TextBox>();
 
         public Form1()
         {
@@ -56,9 +61,28 @@ namespace CSD_Bot
             _slotLocation[7].X = 33;
             _slotLocation[7].Y = 722;
 
-            BotOn = true;
-            _preparing = false;
-            
+            _slotBox.Add(SlotBox1);
+            _slotBox.Add(SlotBox2);
+            _slotBox.Add(SlotBox3);
+            _slotBox.Add(SlotBox4);
+            _slotBox.Add(SlotBox5);
+            _slotBox.Add(SlotBox6);
+            _slotBox.Add(SlotBox7);
+            _slotBox.Add(SlotBox8);
+
+            _slotStatus.Add(SlotStatus1);
+            _slotStatus.Add(SlotStatus2);
+            _slotStatus.Add(SlotStatus3);
+            _slotStatus.Add(SlotStatus4);
+            _slotStatus.Add(SlotStatus5);
+            _slotStatus.Add(SlotStatus6);
+            _slotStatus.Add(SlotStatus7);
+            _slotStatus.Add(SlotStatus8);
+
+            foreach (TextBox t in _slotStatus)
+            {
+                t.Text = @"Empty";
+            }
 
             _gHook = new GlobalKeyboardHook(); // Create a new GlobalKeyboardHook
             _gHook.KeyDown += gHook_KeyDown; // Declare a KeyDown Event
@@ -99,6 +123,8 @@ namespace CSD_Bot
                 }
                 _meniu[i].MaxStage = d;
             }
+            BotOn = true;
+            _preparing = false;
             Run();// Start the checking
         }
 
@@ -112,20 +138,29 @@ namespace CSD_Bot
         {
             while (BotOn)
             {
-                if (!_preparing)
+                Process[] pname = Process.GetProcessesByName("CSDSteamBuild");
+
+                if (pname.Length != 0)
                 {
-                    for (var slot = 1; slot <= 8; slot++)
+                    GameStatus.Text = @"CSD detected";
+                    if (!_preparing)
                     {
-                        if (_slots[slot - 1].Occupied || !CheckSlot(_slotLocation[slot - 1])) continue;
-                        //Console.WriteLine(slot + @" is white");
-                        _slots[slot - 1].Occupied = true;
-                        _queue.Enqueue(slot);
+                        for (var slot = 1; slot <= 8; slot++)
+                        {
+                            if (_slots[slot - 1].Occupied || !CheckSlot(_slotLocation[slot - 1])) continue;
+                            _slots[slot - 1].Occupied = true;
+                            _queue.Enqueue(slot);
+                        }
+                        if (_queue.Count != 0)
+                        {
+                            _preparing = true;
+                            Prepare((int) _queue.Dequeue());
+                        }
                     }
-                    if (_queue.Count != 0)
-                    {
-                        _preparing = true;
-                        Prepare((int)_queue.Dequeue());
-                    }
+                }
+                else
+                {
+                    GameStatus.Text = @"Can't detect CSD";
                 }
                 await Task.Delay(40);
             }
@@ -144,7 +179,6 @@ namespace CSD_Bot
         private async void Prepare(int slot)
         {
             var sim = new InputSimulator();
-            var end = true;
             SendKeys.Send(slot.ToString());
             if (_slots[slot - 1].Name == null)
             {
@@ -153,6 +187,7 @@ namespace CSD_Bot
             }
             if (_slots[slot - 1].Name != null)
             {
+                _slotStatus[slot - 1].Text = @"Preparing";
                 _slots[slot - 1].Stage++;
 
                 var instructions = _slots[slot - 1].Preparation[_slots[slot - 1].Stage - 1];
@@ -172,6 +207,9 @@ namespace CSD_Bot
                             case 'E':
                                 SendKeys.Send("{ENTER}");
                                 break;
+                            case 'D':
+                                SendKeys.Send("{DOWN}");
+                                break;
                             case 'U':
                                 SendKeys.Send("{UP}");
                                 break;
@@ -180,9 +218,6 @@ namespace CSD_Bot
                                 break;
                             case 'R':
                                 SendKeys.Send("{RIGHT}");
-                                break;
-                            case 'D':
-                                SendKeys.Send("{DOWN}");
                                 break;
                             case 'H':
                                 var press = instructions[i+1];
@@ -206,14 +241,13 @@ namespace CSD_Bot
                                         virtualKey = (VirtualKeyCode) 40;
                                         break;
                                     case 'L':
-                                        virtualKey = (VirtualKeyCode)37;
+                                        virtualKey = (VirtualKeyCode) 37;
                                         break;
                                     case 'U':
-                                        virtualKey = (VirtualKeyCode)38;
+                                        virtualKey = (VirtualKeyCode) 38;
                                         break;
-                                    
                                     case 'R':
-                                        virtualKey = (VirtualKeyCode)39;
+                                        virtualKey = (VirtualKeyCode) 39;
                                         break;
                                 }
                                 sim.Keyboard.KeyDown(virtualKey);
@@ -222,43 +256,35 @@ namespace CSD_Bot
                                 break;
                             case 'W':
                                 _preparing = false;
-                                end = false;
                                 var wTime = int.Parse(instructions.Substring(i + 1, instructions.Length - i - 1));
+                                _slotStatus[slot - 1].Text = @"Cooking";
                                 await Task.Delay(wTime);
-                                Console.WriteLine(_slots[slot-1].Stage + @" off " + _slots[slot-1].MaxStage);
                                 if (_slots[slot - 1].Stage == _slots[slot - 1].MaxStage)
                                 {
-                                    Console.Write(@"RESET");
                                     SendKeys.Send(slot.ToString());
-                                    _slots[slot - 1].Name = null;
-                                    _slots[slot - 1].Stage = 0;
-                                    _slots[slot - 1].MaxStage = 0;
                                     _slots[slot - 1].Occupied = false;
-                                    Console.WriteLine(@"Slot " + slot + @": Done");
+                                    _slots[slot - 1].Name = null;
+                                    //_slots[slot - 1].Stage = 0;
+                                    //_slots[slot - 1].MaxStage = 0;
+                                    _slotBox[slot - 1].Text = null;
+                                    _slotStatus[slot - 1].Text = @"Empty";
                                 }
                                 else
                                 {
-                                    Console.WriteLine(@"_queue.Enqueue(slot)");
                                     _queue.Enqueue(slot);
+                                    _slotStatus[slot - 1].Text = @"In queue";
                                 }
-                                
-                                //_queue.Enqueue(slot);
-                                i = instructions.Length;
-                                break;
+                                return;
                         }
                     }
                 }
-                if (_slots[slot - 1].Stage == _slots[slot - 1].MaxStage && end)
-                {
-                    Console.WriteLine(@"Slot " + slot + @": Done");
-                    Console.WriteLine(@"RESET");
-                    _slots[slot - 1].Name = null;
-                    _slots[slot - 1].Stage = 0;
-                    _slots[slot - 1].MaxStage = 0;
-                    //await Task.Delay(200);
-                    _slots[slot - 1].Occupied = false;
-                    _preparing = false;
-                }
+                _preparing = false;
+                _slots[slot - 1].Occupied = false;
+                _slots[slot - 1].Name = null;
+                //_slots[slot - 1].Stage = 0;
+                //_slots[slot - 1].MaxStage = 0;
+                _slotBox[slot - 1].Text = null;
+                _slotStatus[slot - 1].Text = @"Empty";
             }
             else
             {
@@ -268,29 +294,28 @@ namespace CSD_Bot
         }
 
         // Fills the slot info
-        private bool Order(int slot, string name)
+        private void Order(int slot, string name)
         {
             if (string.IsNullOrEmpty(name))
             {
-                return false;
+                return;
             }
             name = Clean(name);
-            Console.WriteLine(name);
-            var found = false;
+            //Console.WriteLine(name);
+            _slotStatus[slot - 1].Text = @"Searching";
             for (var i = 0; i < _meniuSize; i++)
             {
                 if (_meniu[i].Name != name) continue;
-                found = true;
                 _slots[slot - 1].Name = name;
+                _slotBox[slot - 1].Text = name;
                 for (var a = 0; a < _meniu[i].MaxStage; a++)
                 {
                     _slots[slot - 1].Preparation[a] = _meniu[i].Preparation[a];
                 }
                 _slots[slot - 1].Stage = 0;
                 _slots[slot - 1].MaxStage = _meniu[i].MaxStage;
-                break;
+                return;
             }
-            return found;
         }
 
         // Returns a string only in quotes

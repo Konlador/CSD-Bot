@@ -1,17 +1,14 @@
 Classic Italian Lasagna|pscrpscrpscrEW8100|
-Meaty Rome Lasagna|psmcrpsmcrpscrEW8100|
-Vegetable Lasagna|psvcrpsvcrpscrEW8100|
-Stuffed Piza Lasagna|psmcrpsvcrpscrEW8100|
 Classic Steak|sssjEW17500|
-Citrus Steak|sjjcEW18000|
-Spicy Steak|sppppjjEW18000|
-The Dry Spicy Steak|sppEW18000|
-Baconesque|sjjbbEW18000|
-Spicy Baconesque|sjppbbEW18000|
-Spicy Smokey Steak|ssdpppjjEW18000|
-Smokey Orange Steak|sdjccEW18000|
-Hickory Steak|sshhjjjjEW18000|
-West Texas Steak|ssddhhppjjbbEW18000|
+Citrus Steak|sjjcEW17500|
+Spicy Steak|sppppjjEW17500|
+The Dry Spicy Steak|sppEW17500|
+Baconesque|sjjbbEW17500|
+Spicy Baconesque|sjppbbEW17500|
+Spicy Smokey Steak|ssdpppjjEW17500|
+Smokey Orange Steak|sdjccEW17500|
+Hickory Steak|sshhjjjjEW17500|
+West Texas Steak|ssddhhppjjbbEW17500|
 The Original|mEW8000|mlbctEHD500|
 The Double|mmEW8000|mmlbctEHD500|
 BLT|bltEHD500|

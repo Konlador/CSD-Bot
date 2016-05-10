@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="CSD Bot.exe" size="23040">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="CSD Bot.exe" size="204800">
       <assemblyIdentity name="CSD Bot" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>/tqYsaCXlnNSEaw2pdxj9tZHDG6Wxx3mwJ5zeyFdXmw=</dsig:DigestValue>
+        <dsig:DigestValue>UY/50hvr+EATnmbIEc8sQg/GKTbQUwslU/Vnr1sETUk=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
