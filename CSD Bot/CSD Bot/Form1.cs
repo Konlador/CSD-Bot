@@ -17,28 +17,29 @@ namespace CSD_Bot
 {
     public partial class Form1 : Form
     {
-        [DllImport("gdi32.dll", CharSet = CharSet.Auto, SetLastError = true, ExactSpelling = true)]
-        public static extern int BitBlt(IntPtr hDC, int x, int y, int nWidth, int nHeight, IntPtr hSrcDC, int xSrc, int ySrc, int dwRop);
-
-        public bool BotOn;
-
-        private GlobalKeyboardHook _gHook;
         private readonly string _imagePath = AppDomain.CurrentDomain.BaseDirectory + "myBitmap.bmp";
-        private readonly Dish[] _meniu = new Dish[1000];
-        private int _meniuSize;
-        private bool _preparing;
+        private readonly Dictionary<string, Dish> _meniu = new Dictionary<string, Dish>();
         private readonly Queue _queue = new Queue();
-        private readonly Dish[] _slots = new Dish[8];
-        private readonly Point[] _slotLocation = new Point[8];
         private readonly Bitmap _screenPixel = new Bitmap(1, 1, PixelFormat.Format32bppArgb);
 
         private readonly List<TextBox> _slotBox = new List<TextBox>();
+        private readonly Point[] _slotLocation = new Point[8];
+        private readonly DishProduction[] _slots = new DishProduction[8];
         private readonly List<TextBox> _slotStatus = new List<TextBox>();
+
+        private GlobalKeyboardHook _gHook;
+        //private readonly Dish[] _meniu = new Dish[1000];
+        private bool _preparing;
+
+        public bool BotOn;
 
         public Form1()
         {
             InitializeComponent();
         }
+
+        [DllImport("gdi32.dll", CharSet = CharSet.Auto, SetLastError = true, ExactSpelling = true)]
+        public static extern int BitBlt(IntPtr hDC, int x, int y, int nWidth, int nHeight, IntPtr hSrcDC, int xSrc, int ySrc, int dwRop);
 
         // Default settings
         private void Form1_Load(object sender, EventArgs e)
@@ -79,7 +80,7 @@ namespace CSD_Bot
             _slotStatus.Add(SlotStatus7);
             _slotStatus.Add(SlotStatus8);
 
-            foreach (TextBox t in _slotStatus)
+            foreach (var t in _slotStatus)
             {
                 t.Text = @"Empty";
             }
@@ -100,32 +101,34 @@ namespace CSD_Bot
             // Empty the slot array
             for (var i = 0; i < 8; i++)
             {
-                _slots[i].Name = null;
-                _slots[i].Preparation = new string[10];
-                _slots[i].Stage = 0;
-                _slots[i].MaxStage = 0;
+                _slots[i] = new DishProduction();
             }
 
             // Read the meniu and save it in an array
             var lines = File.ReadAllLines(AppDomain.CurrentDomain.BaseDirectory + "Meniu.txt");
             for (var i = 0; i < lines.Length; i++)
             {
-                _meniuSize++;
-                _meniu[i].Name = lines[i].Substring(0, lines[i].IndexOf("|", StringComparison.Ordinal));
-                lines[i] = lines[i].Substring(lines[i].IndexOf("|", StringComparison.Ordinal) + 1, lines[i].Length - lines[i].IndexOf("|", StringComparison.Ordinal) - 1);
+                var name = lines[i].Substring(0, lines[i].IndexOf("|", StringComparison.Ordinal));
+                //_meniu[i].Name = name;
+                _meniu.Add(name, new Dish());
+                //_meniu[name] = new Dish();
+                lines[i] = lines[i].Substring(lines[i].IndexOf("|", StringComparison.Ordinal) + 1,
+                    lines[i].Length - lines[i].IndexOf("|", StringComparison.Ordinal) - 1);
                 var d = 0;
-                _meniu[i].Preparation = new string[5];
+                _meniu[name].Preparation = new string[5];
                 while (lines[i].Length > 0)
                 {
-                    _meniu[i].Preparation[d] = lines[i].Substring(0, lines[i].IndexOf("|", StringComparison.Ordinal));
-                    lines[i] = lines[i].Substring(lines[i].IndexOf("|", StringComparison.Ordinal) + 1, lines[i].Length - lines[i].IndexOf("|", StringComparison.Ordinal) - 1);
+                    _meniu[name].Preparation[d] = lines[i].Substring(0, lines[i].IndexOf("|", StringComparison.Ordinal));
+                    //_meniu[i].Preparation[d] = lines[i].Substring(0, lines[i].IndexOf("|", StringComparison.Ordinal));
+                    lines[i] = lines[i].Substring(lines[i].IndexOf("|", StringComparison.Ordinal) + 1,
+                        lines[i].Length - lines[i].IndexOf("|", StringComparison.Ordinal) - 1);
                     d++;
                 }
-                _meniu[i].MaxStage = d;
+                //_meniu[i].MaxStage = d;
+                _meniu[name].MaxStage = d;
             }
-            BotOn = true;
+            BotOn = false;
             _preparing = false;
-            Run();// Start the checking
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -138,7 +141,7 @@ namespace CSD_Bot
         {
             while (BotOn)
             {
-                Process[] pname = Process.GetProcessesByName("CSDSteamBuild");
+                var pname = Process.GetProcessesByName("CSDSteamBuild");
 
                 if (pname.Length != 0)
                 {
@@ -175,122 +178,133 @@ namespace CSD_Bot
             _queue.Enqueue(slot);
         }
 
+        private void OnOffButton_Click(object sender, EventArgs e)
+        {
+            BotOn = !BotOn;
+            if (BotOn)
+            {
+                OnOffButton.Text = @"Turn off (F12)";
+                Run(); // Start the checking
+            }
+            else
+            {
+                OnOffButton.Text = @"Turn on (F12)";
+            }
+        }
+
         // Look at a slot and handle it
         private async void Prepare(int slot)
         {
             var sim = new InputSimulator();
             SendKeys.Send(slot.ToString());
-            if (_slots[slot - 1].Name == null)
+            if (_slots[slot - 1].Dish == null)
             {
                 await Task.Delay(50);
                 Order(slot, ReadTextFromImage(_imagePath));
             }
-            if (_slots[slot - 1].Name != null)
+            if (_slots[slot - 1].Dish == null)
             {
-                _slotStatus[slot - 1].Text = @"Preparing";
-                _slots[slot - 1].Stage++;
+                _slots[slot - 1].Occupied = false;
+                _preparing = false;
+                _slotStatus[slot - 1].Text = @"Empty";
+                return;
+            }
+            _slotStatus[slot - 1].Text = @"Preparing";
+            _slots[slot - 1].Stage++;
 
-                var instructions = _slots[slot - 1].Preparation[_slots[slot - 1].Stage - 1];
-                Console.WriteLine(@"Slot " + slot + @": Preparing " + _slots[slot - 1].Name + @"|Stage " + _slots[slot - 1].Stage + @"/" + _slots[slot - 1].MaxStage + @"|");
+            var instructions = _slots[slot - 1].Dish.Preparation[_slots[slot - 1].Stage - 1];
+            //Console.WriteLine(@"Slot " + slot + @": Preparing " + _slots[slot - 1].Name + @"|Stage " + _slots[slot - 1].Stage + @"/" + _slots[slot - 1].MaxStage + @"|");
 
-                for (var i = 0; i < instructions.Length; i++)
+            for (var i = 0; i < instructions.Length; i++)
+            {
+                await Task.Delay(30);
+                if (char.IsLower(instructions[i]))
                 {
-                    await Task.Delay(50);
-                    if (char.IsLower(instructions[i]))
+                    SendKeys.Send(instructions[i].ToString());
+                }
+                else
+                {
+                    switch (instructions[i])
                     {
-                        SendKeys.Send(instructions[i].ToString());
-                    }
-                    else
-                    {
-                        switch (instructions[i])
-                        {
-                            case 'E':
-                                SendKeys.Send("{ENTER}");
-                                break;
-                            case 'D':
-                                SendKeys.Send("{DOWN}");
-                                break;
-                            case 'U':
-                                SendKeys.Send("{UP}");
-                                break;
-                            case 'L':
-                                SendKeys.Send("{LEFT}");
-                                break;
-                            case 'R':
-                                SendKeys.Send("{RIGHT}");
-                                break;
-                            case 'H':
-                                var press = instructions[i+1];
-                                i+=2;
-                                var hTimeS = "";
-                                while (instructions[i] >= 48 && instructions[i] <= 57)
+                        case 'E':
+                            SendKeys.Send("{ENTER}");
+                            break;
+                        case 'D':
+                            SendKeys.Send("{DOWN}");
+                            break;
+                        case 'U':
+                            SendKeys.Send("{UP}");
+                            break;
+                        case 'L':
+                            SendKeys.Send("{LEFT}");
+                            break;
+                        case 'R':
+                            SendKeys.Send("{RIGHT}");
+                            break;
+                        case 'H':
+                            var press = instructions[i + 1];
+                            i += 2;
+                            var hTimeS = "";
+                            while (instructions[i] >= 48 && instructions[i] <= 57)
+                            {
+                                hTimeS += instructions[i];
+                                i++;
+                                if (i == instructions.Length)
                                 {
-                                    hTimeS += instructions[i];
-                                    i++;
-                                    if (i == instructions.Length)
-                                    {
-                                        break;
-                                    }
+                                    break;
                                 }
-                                i--;
-                                var hTime = int.Parse(hTimeS);
-                                VirtualKeyCode virtualKey = 0;
-                                switch (press)
-                                {
-                                    case 'D':
-                                        virtualKey = (VirtualKeyCode) 40;
-                                        break;
-                                    case 'L':
-                                        virtualKey = (VirtualKeyCode) 37;
-                                        break;
-                                    case 'U':
-                                        virtualKey = (VirtualKeyCode) 38;
-                                        break;
-                                    case 'R':
-                                        virtualKey = (VirtualKeyCode) 39;
-                                        break;
-                                }
-                                sim.Keyboard.KeyDown(virtualKey);
-                                await Task.Delay(hTime);
-                                sim.Keyboard.KeyUp(virtualKey);
-                                break;
-                            case 'W':
-                                _preparing = false;
-                                var wTime = int.Parse(instructions.Substring(i + 1, instructions.Length - i - 1));
-                                _slotStatus[slot - 1].Text = @"Cooking";
-                                await Task.Delay(wTime);
-                                if (_slots[slot - 1].Stage == _slots[slot - 1].MaxStage)
-                                {
-                                    SendKeys.Send(slot.ToString());
-                                    _slots[slot - 1].Occupied = false;
-                                    _slots[slot - 1].Name = null;
-                                    //_slots[slot - 1].Stage = 0;
-                                    //_slots[slot - 1].MaxStage = 0;
-                                    _slotBox[slot - 1].Text = null;
-                                    _slotStatus[slot - 1].Text = @"Empty";
-                                }
-                                else
-                                {
-                                    _queue.Enqueue(slot);
-                                    _slotStatus[slot - 1].Text = @"In queue";
-                                }
-                                return;
-                        }
+                            }
+                            i--;
+                            var hTime = int.Parse(hTimeS);
+                            VirtualKeyCode virtualKey = 0;
+                            switch (press)
+                            {
+                                case 'D':
+                                    virtualKey = (VirtualKeyCode) 40;
+                                    break;
+                                case 'L':
+                                    virtualKey = (VirtualKeyCode) 37;
+                                    break;
+                                case 'U':
+                                    virtualKey = (VirtualKeyCode) 38;
+                                    break;
+                                case 'R':
+                                    virtualKey = (VirtualKeyCode) 39;
+                                    break;
+                            }
+                            sim.Keyboard.KeyDown(virtualKey);
+                            await Task.Delay(hTime);
+                            sim.Keyboard.KeyUp(virtualKey);
+                            break;
+                        case 'W':
+                            _preparing = false;
+                            var wTime = int.Parse(instructions.Substring(i + 1, instructions.Length - i - 1));
+                            _slotStatus[slot - 1].Text = @"Cooking";
+                            await Task.Delay(wTime);
+                            if (_slots[slot - 1].Stage == _slots[slot - 1].Dish.MaxStage)
+                            {
+                                SendKeys.Send(slot.ToString());
+                                await Task.Delay(50);
+                                _slots[slot - 1].Occupied = false;
+                                _slots[slot - 1].Dish = null;
+                                _slotBox[slot - 1].Text = null;
+                                _slotStatus[slot - 1].Text = @"Empty";
+                            }
+                            else
+                            {
+                                _queue.Enqueue(slot);
+                                _slotStatus[slot - 1].Text = @"In queue";
+                            }
+                            return;
                     }
                 }
-                _preparing = false;
-                _slots[slot - 1].Occupied = false;
-                _slots[slot - 1].Name = null;
-                //_slots[slot - 1].Stage = 0;
-                //_slots[slot - 1].MaxStage = 0;
-                _slotBox[slot - 1].Text = null;
-                _slotStatus[slot - 1].Text = @"Empty";
             }
-            else
-            {
-                _slots[slot - 1].Occupied = false;
-                _preparing = false;
-            }
+            await Task.Delay(100);
+            _preparing = false;
+            _slots[slot - 1].Occupied = false;
+            _slots[slot - 1].Dish = null;
+            _slotBox[slot - 1].Text = null;
+            _slotStatus[slot - 1].Text = @"Empty";
         }
 
         // Fills the slot info
@@ -301,36 +315,35 @@ namespace CSD_Bot
                 return;
             }
             name = Clean(name);
-            //Console.WriteLine(name);
+            Console.WriteLine(name);
             _slotStatus[slot - 1].Text = @"Searching";
-            for (var i = 0; i < _meniuSize; i++)
-            {
-                if (_meniu[i].Name != name) continue;
-                _slots[slot - 1].Name = name;
-                _slotBox[slot - 1].Text = name;
-                for (var a = 0; a < _meniu[i].MaxStage; a++)
-                {
-                    _slots[slot - 1].Preparation[a] = _meniu[i].Preparation[a];
-                }
-                _slots[slot - 1].Stage = 0;
-                _slots[slot - 1].MaxStage = _meniu[i].MaxStage;
+
+            Dish dish;
+            if (!_meniu.TryGetValue(name, out dish))
                 return;
-            }
+
+            _slotBox[slot - 1].Text = name;
+
+            _slots[slot - 1].Dish = dish;
+            _slots[slot - 1].Stage = 0;
         }
 
         // Returns a string only in quotes
         private static string Clean(string str)
         {
             //var firstMark = str.IndexOf((char)8220);
-            var secondMark = str.IndexOf((char)8221);
+            var secondMark = str.IndexOf((char) 8221);
             if (secondMark != -1)
             {
                 str = str.Substring(1, secondMark - 1);
             }
-            var ticket = str.IndexOf((char)41);
-            if (ticket != -1)
+            else
             {
-                str = str.Substring(0, ticket+1);
+                var ticket = str.IndexOf((char) 41);
+                if (ticket != -1)
+                {
+                    str = str.Substring(0, ticket + 1);
+                }
             }
             return str;
         }
@@ -343,9 +356,9 @@ namespace CSD_Bot
             {
                 using (var gsrc = Graphics.FromHwnd(IntPtr.Zero))
                 {
-                    IntPtr hSrcDc = gsrc.GetHdc();
-                    IntPtr hDc = gdest.GetHdc();
-                    int retval = BitBlt(hDc, 0, 0, 1, 1, hSrcDc, location.X, location.Y, (int)CopyPixelOperation.SourceCopy);
+                    var hSrcDc = gsrc.GetHdc();
+                    var hDc = gdest.GetHdc();
+                    BitBlt(hDc, 0, 0, 1, 1, hSrcDc, location.X, location.Y, (int) CopyPixelOperation.SourceCopy);
                     gdest.ReleaseHdc();
                     gsrc.ReleaseHdc();
                 }
@@ -371,13 +384,13 @@ namespace CSD_Bot
             // Screem - 365, 780// Screem - 365, 780
 
             //float scale = Math.Min(width / image.Width, height / image.Height);
-            const float scale = 0.835f;
+            const float scale = 0.85f;
 
             var bmpScaled = new Bitmap(bmpScreenshot.Width*2, bmpScreenshot.Height*2);
             var graph = Graphics.FromImage(bmpScaled);
 
-            var scaleWidth = (int)(bmpScreenshot.Width * scale);
-            var scaleHeight = (int)(bmpScreenshot.Height * scale);
+            var scaleWidth = (int) (bmpScreenshot.Width*scale);
+            var scaleHeight = (int) (bmpScreenshot.Height*scale);
 
             var brush = new SolidBrush(Color.Black);
             graph.FillRectangle(brush, new RectangleF(0, 0, scaleWidth, scaleHeight));
@@ -404,7 +417,7 @@ namespace CSD_Bot
                 modiObj.OCR(MiLANGUAGES.miLANG_ENGLISH, true, true);
 
                 //Retrieve the text gathered from the image  
-                var modiImageObj = (Image)modiObj.Images[0];
+                var modiImageObj = (Image) modiObj.Images[0];
 
                 str = modiImageObj.Layout.Text;
 
@@ -414,15 +427,22 @@ namespace CSD_Bot
             {
                 Console.WriteLine(@"Couldn't read.");
             }
+            Console.WriteLine(str);
             return str;
         }
 
-        public struct Dish
+        public class Dish
         {
-            public string Name;
-            public int Stage, MaxStage;
-            public string[] Preparation;
-            public bool Occupied;
+            public string Name { get; set; }
+            public int MaxStage { get; set; }
+            public string[] Preparation { get; set; }
+        }
+
+        public class DishProduction
+        {
+            public Dish Dish { get; set; }
+            public int Stage { get; set; }
+            public bool Occupied { get; set; }
         }
     }
 }

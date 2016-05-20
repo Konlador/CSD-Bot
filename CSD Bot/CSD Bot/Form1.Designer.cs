@@ -55,6 +55,7 @@
             this.SlotStatus6 = new System.Windows.Forms.TextBox();
             this.SlotStatus5 = new System.Windows.Forms.TextBox();
             this.GameStatus = new System.Windows.Forms.TextBox();
+            this.OnOffButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -332,7 +333,7 @@
             // 
             // GameStatus
             // 
-            this.GameStatus.Location = new System.Drawing.Point(275, 11);
+            this.GameStatus.Location = new System.Drawing.Point(303, 11);
             this.GameStatus.Multiline = true;
             this.GameStatus.Name = "GameStatus";
             this.GameStatus.ReadOnly = true;
@@ -340,11 +341,22 @@
             this.GameStatus.TabIndex = 24;
             this.GameStatus.TabStop = false;
             // 
+            // OnOffButton
+            // 
+            this.OnOffButton.Location = new System.Drawing.Point(315, 68);
+            this.OnOffButton.Name = "OnOffButton";
+            this.OnOffButton.Size = new System.Drawing.Size(123, 34);
+            this.OnOffButton.TabIndex = 25;
+            this.OnOffButton.Text = "Turn on (F12)";
+            this.OnOffButton.UseVisualStyleBackColor = true;
+            this.OnOffButton.Click += new System.EventHandler(this.OnOffButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(450, 307);
+            this.Controls.Add(this.OnOffButton);
             this.Controls.Add(this.GameStatus);
             this.Controls.Add(this.SlotStatus5);
             this.Controls.Add(this.SlotStatus6);
@@ -411,6 +423,7 @@
         private System.Windows.Forms.TextBox SlotStatus6;
         private System.Windows.Forms.TextBox SlotStatus5;
         private System.Windows.Forms.TextBox GameStatus;
+        private System.Windows.Forms.Button OnOffButton;
     }
 }
 
