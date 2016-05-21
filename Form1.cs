@@ -5,7 +5,6 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
-using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -94,7 +93,7 @@ namespace CSD_Bot
             }
 
             // Read the meniu and save it in an array
-            var lines = File.ReadAllLines(AppDomain.CurrentDomain.BaseDirectory + "Menu.txt");
+            var lines = File.ReadAllLines(AppDomain.CurrentDomain.BaseDirectory + "Resources/Menu.txt");
             for (var i = 0; i < lines.Length; i++)
             {
                 var name = lines[i].Substring(0, lines[i].IndexOf("|", StringComparison.Ordinal));
