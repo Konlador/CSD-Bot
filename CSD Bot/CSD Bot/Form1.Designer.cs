@@ -30,14 +30,14 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.PictureBox = new System.Windows.Forms.PictureBox();
-            this.SlotBox1 = new System.Windows.Forms.TextBox();
-            this.SlotBox2 = new System.Windows.Forms.TextBox();
-            this.SlotBox3 = new System.Windows.Forms.TextBox();
-            this.SlotBox4 = new System.Windows.Forms.TextBox();
-            this.SlotBox5 = new System.Windows.Forms.TextBox();
-            this.SlotBox6 = new System.Windows.Forms.TextBox();
-            this.SlotBox8 = new System.Windows.Forms.TextBox();
-            this.SlotBox7 = new System.Windows.Forms.TextBox();
+            this.SlotName1 = new System.Windows.Forms.TextBox();
+            this.SlotName2 = new System.Windows.Forms.TextBox();
+            this.SlotName3 = new System.Windows.Forms.TextBox();
+            this.SlotName4 = new System.Windows.Forms.TextBox();
+            this.SlotName5 = new System.Windows.Forms.TextBox();
+            this.SlotName6 = new System.Windows.Forms.TextBox();
+            this.SlotName8 = new System.Windows.Forms.TextBox();
+            this.SlotName7 = new System.Windows.Forms.TextBox();
             this.SlotLabel1 = new System.Windows.Forms.TextBox();
             this.SlotLabel2 = new System.Windows.Forms.TextBox();
             this.SlotLabel3 = new System.Windows.Forms.TextBox();
@@ -63,81 +63,81 @@
             // 
             this.PictureBox.Location = new System.Drawing.Point(12, 222);
             this.PictureBox.Name = "PictureBox";
-            this.PictureBox.Size = new System.Drawing.Size(799, 67);
+            this.PictureBox.Size = new System.Drawing.Size(426, 67);
             this.PictureBox.TabIndex = 1;
             this.PictureBox.TabStop = false;
             // 
-            // SlotBox1
+            // SlotName1
             // 
-            this.SlotBox1.Location = new System.Drawing.Point(76, 12);
-            this.SlotBox1.Name = "SlotBox1";
-            this.SlotBox1.ReadOnly = true;
-            this.SlotBox1.Size = new System.Drawing.Size(150, 20);
-            this.SlotBox1.TabIndex = 1;
-            this.SlotBox1.TabStop = false;
+            this.SlotName1.Location = new System.Drawing.Point(76, 12);
+            this.SlotName1.Name = "SlotName1";
+            this.SlotName1.ReadOnly = true;
+            this.SlotName1.Size = new System.Drawing.Size(150, 20);
+            this.SlotName1.TabIndex = 1;
+            this.SlotName1.TabStop = false;
             // 
-            // SlotBox2
+            // SlotName2
             // 
-            this.SlotBox2.Location = new System.Drawing.Point(76, 40);
-            this.SlotBox2.Name = "SlotBox2";
-            this.SlotBox2.ReadOnly = true;
-            this.SlotBox2.Size = new System.Drawing.Size(150, 20);
-            this.SlotBox2.TabIndex = 2;
-            this.SlotBox2.TabStop = false;
+            this.SlotName2.Location = new System.Drawing.Point(76, 40);
+            this.SlotName2.Name = "SlotName2";
+            this.SlotName2.ReadOnly = true;
+            this.SlotName2.Size = new System.Drawing.Size(150, 20);
+            this.SlotName2.TabIndex = 2;
+            this.SlotName2.TabStop = false;
             // 
-            // SlotBox3
+            // SlotName3
             // 
-            this.SlotBox3.Location = new System.Drawing.Point(76, 66);
-            this.SlotBox3.Name = "SlotBox3";
-            this.SlotBox3.ReadOnly = true;
-            this.SlotBox3.Size = new System.Drawing.Size(150, 20);
-            this.SlotBox3.TabIndex = 3;
-            this.SlotBox3.TabStop = false;
+            this.SlotName3.Location = new System.Drawing.Point(76, 66);
+            this.SlotName3.Name = "SlotName3";
+            this.SlotName3.ReadOnly = true;
+            this.SlotName3.Size = new System.Drawing.Size(150, 20);
+            this.SlotName3.TabIndex = 3;
+            this.SlotName3.TabStop = false;
             // 
-            // SlotBox4
+            // SlotName4
             // 
-            this.SlotBox4.Location = new System.Drawing.Point(76, 92);
-            this.SlotBox4.Name = "SlotBox4";
-            this.SlotBox4.ReadOnly = true;
-            this.SlotBox4.Size = new System.Drawing.Size(150, 20);
-            this.SlotBox4.TabIndex = 4;
-            this.SlotBox4.TabStop = false;
+            this.SlotName4.Location = new System.Drawing.Point(76, 92);
+            this.SlotName4.Name = "SlotName4";
+            this.SlotName4.ReadOnly = true;
+            this.SlotName4.Size = new System.Drawing.Size(150, 20);
+            this.SlotName4.TabIndex = 4;
+            this.SlotName4.TabStop = false;
             // 
-            // SlotBox5
+            // SlotName5
             // 
-            this.SlotBox5.Location = new System.Drawing.Point(76, 118);
-            this.SlotBox5.Name = "SlotBox5";
-            this.SlotBox5.ReadOnly = true;
-            this.SlotBox5.Size = new System.Drawing.Size(150, 20);
-            this.SlotBox5.TabIndex = 5;
-            this.SlotBox5.TabStop = false;
+            this.SlotName5.Location = new System.Drawing.Point(76, 118);
+            this.SlotName5.Name = "SlotName5";
+            this.SlotName5.ReadOnly = true;
+            this.SlotName5.Size = new System.Drawing.Size(150, 20);
+            this.SlotName5.TabIndex = 5;
+            this.SlotName5.TabStop = false;
             // 
-            // SlotBox6
+            // SlotName6
             // 
-            this.SlotBox6.Location = new System.Drawing.Point(76, 144);
-            this.SlotBox6.Name = "SlotBox6";
-            this.SlotBox6.ReadOnly = true;
-            this.SlotBox6.Size = new System.Drawing.Size(150, 20);
-            this.SlotBox6.TabIndex = 6;
-            this.SlotBox6.TabStop = false;
+            this.SlotName6.Location = new System.Drawing.Point(76, 144);
+            this.SlotName6.Name = "SlotName6";
+            this.SlotName6.ReadOnly = true;
+            this.SlotName6.Size = new System.Drawing.Size(150, 20);
+            this.SlotName6.TabIndex = 6;
+            this.SlotName6.TabStop = false;
             // 
-            // SlotBox8
+            // SlotName8
             // 
-            this.SlotBox8.Location = new System.Drawing.Point(76, 196);
-            this.SlotBox8.Name = "SlotBox8";
-            this.SlotBox8.ReadOnly = true;
-            this.SlotBox8.Size = new System.Drawing.Size(150, 20);
-            this.SlotBox8.TabIndex = 8;
-            this.SlotBox8.TabStop = false;
+            this.SlotName8.Location = new System.Drawing.Point(76, 196);
+            this.SlotName8.Name = "SlotName8";
+            this.SlotName8.ReadOnly = true;
+            this.SlotName8.Size = new System.Drawing.Size(150, 20);
+            this.SlotName8.TabIndex = 8;
+            this.SlotName8.TabStop = false;
             // 
-            // SlotBox7
+            // SlotName7
             // 
-            this.SlotBox7.Location = new System.Drawing.Point(76, 170);
-            this.SlotBox7.Name = "SlotBox7";
-            this.SlotBox7.ReadOnly = true;
-            this.SlotBox7.Size = new System.Drawing.Size(150, 20);
-            this.SlotBox7.TabIndex = 7;
-            this.SlotBox7.TabStop = false;
+            this.SlotName7.Location = new System.Drawing.Point(76, 170);
+            this.SlotName7.Name = "SlotName7";
+            this.SlotName7.ReadOnly = true;
+            this.SlotName7.Size = new System.Drawing.Size(150, 20);
+            this.SlotName7.TabIndex = 7;
+            this.SlotName7.TabStop = false;
             // 
             // SlotLabel1
             // 
@@ -374,14 +374,14 @@
             this.Controls.Add(this.SlotLabel3);
             this.Controls.Add(this.SlotLabel2);
             this.Controls.Add(this.SlotLabel1);
-            this.Controls.Add(this.SlotBox7);
-            this.Controls.Add(this.SlotBox8);
-            this.Controls.Add(this.SlotBox6);
-            this.Controls.Add(this.SlotBox5);
-            this.Controls.Add(this.SlotBox4);
-            this.Controls.Add(this.SlotBox3);
-            this.Controls.Add(this.SlotBox2);
-            this.Controls.Add(this.SlotBox1);
+            this.Controls.Add(this.SlotName7);
+            this.Controls.Add(this.SlotName8);
+            this.Controls.Add(this.SlotName6);
+            this.Controls.Add(this.SlotName5);
+            this.Controls.Add(this.SlotName4);
+            this.Controls.Add(this.SlotName3);
+            this.Controls.Add(this.SlotName2);
+            this.Controls.Add(this.SlotName1);
             this.Controls.Add(this.PictureBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -398,14 +398,14 @@
 
         #endregion
         private System.Windows.Forms.PictureBox PictureBox;
-        private System.Windows.Forms.TextBox SlotBox1;
-        private System.Windows.Forms.TextBox SlotBox2;
-        private System.Windows.Forms.TextBox SlotBox3;
-        private System.Windows.Forms.TextBox SlotBox4;
-        private System.Windows.Forms.TextBox SlotBox5;
-        private System.Windows.Forms.TextBox SlotBox6;
-        private System.Windows.Forms.TextBox SlotBox8;
-        private System.Windows.Forms.TextBox SlotBox7;
+        private System.Windows.Forms.TextBox SlotName1;
+        private System.Windows.Forms.TextBox SlotName2;
+        private System.Windows.Forms.TextBox SlotName3;
+        private System.Windows.Forms.TextBox SlotName4;
+        private System.Windows.Forms.TextBox SlotName5;
+        private System.Windows.Forms.TextBox SlotName6;
+        private System.Windows.Forms.TextBox SlotName8;
+        private System.Windows.Forms.TextBox SlotName7;
         private System.Windows.Forms.TextBox SlotLabel1;
         private System.Windows.Forms.TextBox SlotLabel2;
         private System.Windows.Forms.TextBox SlotLabel3;
