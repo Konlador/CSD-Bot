@@ -202,7 +202,7 @@ namespace CSD_Bot
 
             for (var i = 0; i < instructions.Length; i++)
             {
-                await Task.Delay(30);
+                await Task.Delay(40);
                 if (char.IsLower(instructions[i]))
                 {
                     //inputSimulator.Keyboard.KeyPress((VirtualKeyCode) instructions[i] - 32);

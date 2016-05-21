@@ -61,9 +61,9 @@
             // 
             // PictureBox
             // 
-            this.PictureBox.Location = new System.Drawing.Point(12, 222);
+            this.PictureBox.Location = new System.Drawing.Point(12, 253);
             this.PictureBox.Name = "PictureBox";
-            this.PictureBox.Size = new System.Drawing.Size(426, 67);
+            this.PictureBox.Size = new System.Drawing.Size(426, 53);
             this.PictureBox.TabIndex = 1;
             this.PictureBox.TabStop = false;
             // 
@@ -355,7 +355,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(450, 307);
+            this.ClientSize = new System.Drawing.Size(450, 232);
             this.Controls.Add(this.OnOffButton);
             this.Controls.Add(this.GameStatus);
             this.Controls.Add(this.SlotStatus5);
