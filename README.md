@@ -17,4 +17,4 @@ You may freely to use this source-code
 ### Need to know
 As this is still a work in progress project it may hiccup sometimes and fail to prepare a dish (not likely).
 
-Can't do complex dishes such as cooked potatoes or coffee when it is required to look at the description how much sugar must be added.
+Can't do complex dishes such as baked potatoes or coffee when it is required to look at the description how much sugar must be added.
