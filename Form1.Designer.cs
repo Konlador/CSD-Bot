@@ -56,6 +56,9 @@
             this.SlotStatus5 = new System.Windows.Forms.TextBox();
             this.GameStatus = new System.Windows.Forms.TextBox();
             this.OnOffButton = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.BotStatus = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -63,7 +66,7 @@
             // 
             this.PictureBox.Location = new System.Drawing.Point(12, 253);
             this.PictureBox.Name = "PictureBox";
-            this.PictureBox.Size = new System.Drawing.Size(426, 53);
+            this.PictureBox.Size = new System.Drawing.Size(756, 53);
             this.PictureBox.TabIndex = 1;
             this.PictureBox.TabStop = false;
             // 
@@ -333,29 +336,70 @@
             // 
             // GameStatus
             // 
-            this.GameStatus.Location = new System.Drawing.Point(303, 11);
+            this.GameStatus.Location = new System.Drawing.Point(456, 14);
             this.GameStatus.Multiline = true;
             this.GameStatus.Name = "GameStatus";
             this.GameStatus.ReadOnly = true;
-            this.GameStatus.Size = new System.Drawing.Size(135, 20);
+            this.GameStatus.Size = new System.Drawing.Size(41, 20);
             this.GameStatus.TabIndex = 24;
             this.GameStatus.TabStop = false;
             // 
             // OnOffButton
             // 
-            this.OnOffButton.Location = new System.Drawing.Point(315, 68);
+            this.OnOffButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OnOffButton.Location = new System.Drawing.Point(324, 66);
             this.OnOffButton.Name = "OnOffButton";
-            this.OnOffButton.Size = new System.Drawing.Size(123, 34);
+            this.OnOffButton.Size = new System.Drawing.Size(189, 152);
             this.OnOffButton.TabIndex = 25;
-            this.OnOffButton.Text = "Turn on (F12)";
+            this.OnOffButton.Text = "Turn on (F2)";
             this.OnOffButton.UseVisualStyleBackColor = true;
             this.OnOffButton.Click += new System.EventHandler(this.OnOffButton_Click);
+            // 
+            // textBox1
+            // 
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(339, 13);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(117, 20);
+            this.textBox1.TabIndex = 26;
+            this.textBox1.TabStop = false;
+            this.textBox1.Text = "Game status:";
+            // 
+            // textBox2
+            // 
+            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox2.Location = new System.Drawing.Point(339, 37);
+            this.textBox2.Multiline = true;
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
+            this.textBox2.Size = new System.Drawing.Size(117, 20);
+            this.textBox2.TabIndex = 27;
+            this.textBox2.TabStop = false;
+            this.textBox2.Text = "Bot status:";
+            // 
+            // BotStatus
+            // 
+            this.BotStatus.Location = new System.Drawing.Point(456, 37);
+            this.BotStatus.Multiline = true;
+            this.BotStatus.Name = "BotStatus";
+            this.BotStatus.ReadOnly = true;
+            this.BotStatus.Size = new System.Drawing.Size(41, 20);
+            this.BotStatus.TabIndex = 28;
+            this.BotStatus.TabStop = false;
+            this.BotStatus.Text = "Off";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(450, 232);
+            this.ClientSize = new System.Drawing.Size(525, 229);
+            this.Controls.Add(this.BotStatus);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.OnOffButton);
             this.Controls.Add(this.GameStatus);
             this.Controls.Add(this.SlotStatus5);
@@ -424,6 +468,9 @@
         private System.Windows.Forms.TextBox SlotStatus5;
         private System.Windows.Forms.TextBox GameStatus;
         private System.Windows.Forms.Button OnOffButton;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox BotStatus;
     }
 }
 

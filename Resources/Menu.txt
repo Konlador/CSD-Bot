@@ -1,110 +1,26 @@
-Small Cola|DiE|
-Small Grape|RRDiE|
-Small Diet|LDiE|
-Small Cola (no ice)|DE|
-Small Water|LLDiE|
-Small Tea|RDiE|
-Medium Cola|UDiE|
-Medium Grape|URRDiE|
-Medium Diet|ULDiE|
-Medium Cola (no ice)|UDE|
-Medium Water|ULLDiE|
-Medium Tea|URDiE|
-Large Cola|UUDiE|
-Large Grape|UURRDiE|
-Large Diet|UULDiE|
-Large Cola (no ice)|UUDE|
-Large Water|UULLDiE|
-Large Tea|UURDiE|
-Jumbo Cola|UUUDiE|
-Jumbo Grape|UUURRDiE|
-Jumbo Diet|UUULDiE|
-Jumbo Cola (no ice)|UUUDE|
-Jumbo Water|UUULLDiE|
-Jumbo Tea|UUURDiE|
-Jumbo Cola w/Flavor Blast|UUUDifE|
-Jumbo Grape w/Flavor Blast|UUURRDifE|
-Jumbo Diet w/Flavor Blast|UUULDifE|
-Jumbo Cola (no ice) w/Flavor Blast|UUUDfE|
-Jumbo Water w/Flavor Blast|UUULLDifE|
-Jumbo Tea w/Flavor Blast|UUURDifE|
-Small Cola w/Flavor Blast|DifE|
-Small Grape w/Flavor Blast|RRDifE|
-Small Diet w/Flavor Blast|LDifE|
-Small Cola (no ice) w/Flavor Blast|DfE|
-Small Water w/Flavor Blast|LLDifE|
-Small Tea w/Flavor Blast|RDifE|
-Medium Cola w/Flavor Blast|UDifE|
-Medium Grape w/Flavor Blast|URRDifE|
-Medium Diet w/Flavor Blast|ULDifE|
-Large Cola w/Flavor Blast|UUDifE|
-Large Grape w/Flavor Blast|UURRDifE|
-Large Diet w/Flavor Blast|UULDifE|
-Pepperoni Pizza|tcpEW8000|
-Cheese Pizza|tcEW8000|
-Meat Pizza|tcmEW8000|
-P&M Pizza|tcpmEW8000|
-Cheesy Bread|cEW8000|
-Meatlovers Pizza|tcpmbEW8000|
-Veggie Pizza|tcuvnEW8000|
-Deluxe Pizza|tcpmbuEW8000|
-Italian Pizza|tcmuvnEW8000|
-Bacon and Mushroom Pizza|tcbuEW8000|
-Olives and Onions Pizza|tcvnEW8000|
-The PCGB Pizza|tcpbnEW8000|
-Anchovy Pizza|tcaEW8000|
-Deluxe Anchovy Pizza|tcauvnEW8000|
-Meaty Anchovy Pizza|tcpmbaEW8000|
-Dairy-Lite Pizza|tauEW8000|
-Pineapple and Ham Pizza|tchiEW8000|
-The Hawaiian Pizza|tcpbjniEW8000|
-Sweet Veggie Pizza|tcuviEW8000|
-Extra Meat Lovers Pizza|tcpmbhEW8000|
-Super Surpreme Pizza|tcpmbuvnaihEW8000|
-The H.A.M. Pizza|tcahuEW8000|
-Tomato Lover Pizza|tcpoEW8000|
-Tomato & Anchovy Pizza|tcaoEW8000|
-Tomato & Pineapple Pizza|tcioEW8000|
-The All-Meat-Tomato Pizza|tcpmbahoEW8000|
-Pesto Pepperoni Pizza|gcpEW8000|
-All Veggie Pesto Pizza|gcuvnioEW8000|
-Super Deluxe Pesto Pizza|gcpmbuvaihoEW8000|
-Anchovy Pesto Pizza|gcauEW8000|
-Meat Lovers Pesto Pizza|gcpmbhEW8000|
-Pineapple and Ham Pesto Pizza|gchiEW8000|
-Sweet Veggie Pesto Pizza|gcuviEW8000|
-Cheesy Pesto Pizza|gcEW8000|
-Piggy Pesto Pizza|gcbhunEW8000|
-Italian Pesto Pizza|gcpuvnoEW8000|
-Classic Nachos|gEW8000|qgE|
-Surpreme Nachos|gEW8000|qcjtgE|
-Royal Nachos|gEW8000|qcuvjtogE|
-Veggie Nachos|qvjtoE|
-Sour Veggie Nachos|qcvjtoE|
-Guac a Nachos|quE|
-Fiesty Nachos|qcujoE|
-Guac and Chips|ujtE|
-Jalanacho|qjE|
-Bowl of Chips|E|
-Italian Style Nachos|gEW8000|qvogE|
-Scoops of Plenty|qsuoE|
-The Chubigans Special|gEW8000|qbrgE|
-Mexican Siesta|gEW8000|qubrgE|
-Mexican Fiesta|qcvjtobrE|
-Rice and Beans|qbrE|
-Beef and Beans|gEW8000|qbgE|
-Spicy Rice Special|qcjtorE|
-Shrimps Nachos|sEW8000|qcujtsE|
-Deluxe Shrimp Nachos|gsEW8000|qcuvjtobgsE|
-New Orlean Nachos|sEW8000|quvtbrsE|
-Classic Shrimp Nachos|sEW8000|qcusE|
-Beef Fajita Nachos|fEW8000|qcutobfE|
-Chicken Fajita Nachos|kEW8000|qcutobkE|
-Combo Fajita Nachos|kfEW8000|qsutobkfE|
-EXTREME FAJITAS!!!!!|skfEW8000|qcjtobkfsE|
-Chubigans Deluxe Special|kfEW8000|qbrkfE|
-Classic American|gkfEW8000|qcuvjtkfgE|
-Fiery Fiesta Nachos|skEW8000|qvjorksE|
-All Meat Special|gskfEW8000|qcubkfsgE|
-Beefy Surpreme|fgEW8000|qubfgE|
-Fully Loaded Nachos|gskfEW8000|qcuvjtobrgksfE|
+Cheese Pasta|rEW11000|cE|
+Classic Spaghetti|rEW11000|rmE|
+Red Veggie Pasta|rEW11000|rpusoE|
+The Meaty Pasta|rEW11000|rmkbE|
+Hot Bacon Pasta|rEW11000|rbpE|
+Cheesy Onion Pasta|rEW11000|coE|
+Cheesy Meaty Pasta|rEW11000|cmkbE|
+Cheesy Deluxe Pasta|rEW11000|cmkbpusoE|
+Red Deluxe Pasta|rEW11000|rmkbpusoE|
+Cheesy Chicken Pasta|rEW11000|ckbE|
+Spaghetti Deluxe|rEW11000|rmbusE|
+Cheesy Veggie Pasta|rEW11000|cpusoE|
+Creamy Aifredo|rEW11000|wksE|
+The Carbonara|rEW11000|wkbpuiE|
+Creamy Meat Pasta|rEW11000|wmkbuE|
+Creamy Veggie Pasta|rEW11000|wpusoE|
+Spicy Bacon Pasta|rEW11000|rbiE|
+Spicy Spaghetti|rEW11000|rmiE|
+The Dry Tomato|rEW11000|mtE|
+Red Pasta Rally|rEW11000|rpitE|
+Dry Veggie Pasta|rEW11000|psitE|
+Cheesy Tomato|rEW11000|citE|
+Spaghetti Pesto|rEW11000|gmE|
+Manhattan Pesto|rEW11000|gmkbpusoitE|
+Chicken Pesto|rEW11000|gkuiE|
+Verde Pesto|rEW11000|gsiE|

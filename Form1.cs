@@ -79,7 +79,7 @@ namespace CSD_Bot
             // Add the keys you want to hook to the HookedKeys list
             foreach (Keys key in Enum.GetValues(typeof(Keys)))
             {
-                if (key.GetHashCode() >= 112 && key.GetHashCode() <= 119)
+                if (key.GetHashCode() == 112  || key.GetHashCode() == 113)
                 {
                     _gHook.HookedKeys.Add(key);
                 }
@@ -124,28 +124,25 @@ namespace CSD_Bot
             while (BotOn)
             {
                 var pname = Process.GetProcessesByName("CSDSteamBuild");
-
                 if (pname.Length != 0)
                 {
-                    GameStatus.Text = @"CSD detected";
-                    if (!_preparing)
+                    GameStatus.Text = @"On";
+                    for (var slot = 1; slot <= 8; slot++)
                     {
-                        for (var slot = 1; slot <= 8; slot++)
-                        {
-                            if (_slots[slot - 1].Occupied || !CheckSlot(_slotLocation[slot - 1])) continue;
-                            _slots[slot - 1].Occupied = true;
-                            _queue.Enqueue(slot);
-                        }
-                        if (_queue.Count != 0)
-                        {
-                            _preparing = true;
-                            Prepare((int) _queue.Dequeue());
-                        }
+                        if (_slots[slot - 1].Occupied || !CheckSlot(_slotLocation[slot - 1])) continue;
+                        _slots[slot - 1].Occupied = true;
+                        _queue.Enqueue(slot);
+                        _slotInfo[slot - 1].Item2.Text = @"In queue";
+                    }
+                    if (!_preparing && _queue.Count != 0)
+                    {
+                        _preparing = true;
+                        Prepare((int) _queue.Dequeue());
                     }
                 }
                 else
                 {
-                    GameStatus.Text = @"Can't detect CSD";
+                    GameStatus.Text = @"Off";
                 }
                 await Task.Delay(40);
             }
@@ -155,9 +152,25 @@ namespace CSD_Bot
         private void gHook_KeyDown(object sender, KeyEventArgs e)
         {
             var input = e.KeyValue;
-
-            var slot = input - 111;
-            _queue.Enqueue(slot);
+            if (input == 113)
+            {
+                BotOn = !BotOn;
+                if (BotOn)
+                {
+                    OnOffButton.Text = @"Turn off (F2)";
+                    BotStatus.Text = @"On";
+                    Run(); // Start the checking
+                }
+                else
+                {
+                    BotStatus.Text = @"Off";
+                    OnOffButton.Text = @"Turn on (F2)";
+                }
+            }
+            else
+            {
+                _queue.Enqueue(input-111);
+            }
         }
 
         private void OnOffButton_Click(object sender, EventArgs e)
@@ -165,18 +178,18 @@ namespace CSD_Bot
             BotOn = !BotOn;
             if (BotOn)
             {
-                OnOffButton.Text = @"Turn off (F12)";
+                OnOffButton.Text = @"Turn off (F2)";
+                BotStatus.Text = @"On";
                 Run(); // Start the checking
             }
             else
             {
-                OnOffButton.Text = @"Turn on (F12)";
+                BotStatus.Text = @"Off";
+                OnOffButton.Text = @"Turn on (F2)";
             }
-            //int a = (int) VirtualKeyCode.VK_A;
-            //Console.WriteLine(a);
         }
 
-        // Look at a slot and handle it
+        // Look at a slot and prepare the dish
         private async void Prepare(int slot)
         {
             var inputSimulator = new InputSimulator();
@@ -212,23 +225,18 @@ namespace CSD_Bot
                     switch (instructions[i])
                     {
                         case 'E':
-                            //inputSimulator.Keyboard.KeyPress(VirtualKeyCode.RETURN);
                             SendKeys.Send("{ENTER}");
                             break;
                         case 'D':
-                            //inputSimulator.Keyboard.KeyPress(VirtualKeyCode.DOWN);
                             SendKeys.Send("{DOWN}");
                             break;
                         case 'U':
-                            //inputSimulator.Keyboard.KeyPress(VirtualKeyCode.UP);
                             SendKeys.Send("{UP}");
                             break;
                         case 'L':
-                            //inputSimulator.Keyboard.KeyPress(VirtualKeyCode.LEFT);
                             SendKeys.Send("{LEFT}");
                             break;
                         case 'R':
-                            //inputSimulator.Keyboard.KeyPress(VirtualKeyCode.RIGHT);
                             SendKeys.Send("{RIGHT}");
                             break;
                         case 'H':
